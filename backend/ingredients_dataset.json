@@ -1,0 +1,786 @@
+[
+    {
+        "id": "chem_001",
+        "name": "Maltodextrin",
+        "type": "moderate",
+        "category": "Food - Hidden Sugar / Thickener",
+        "profile": "An ultra-processed carbohydrate powder used as a thickener and bulk filler. It has a massive glycemic index of 110, which spikes blood glucose levels significantly faster than standard table sugar."
+    },
+    {
+        "id": "chem_002",
+        "name": "Aspartame",
+        "type": "moderate",
+        "category": "Food - Artificial Sweetener",
+        "profile": "A low-calorie artificial sweetener found in diet sodas and sugar-free foods. It is studied for potential neurotoxic effects, chronic headaches, disruptions to gut microbiome flora, and insulin sensitivity anomalies."
+    },
+    {
+        "id": "chem_003",
+        "name": "Monosodium Glutamate (MSG)",
+        "type": "moderate",
+        "category": "Food - Flavor Enhancer",
+        "profile": "An industrial sodium salt used to artificially intensify savory umami flavors. In sensitive individuals, it can trigger acute neurological symptoms including cluster headaches, flushing, sweating, and localized facial pressure."
+    },
+    {
+        "id": "chem_004",
+        "name": "High Fructose Corn Syrup (HFCS)",
+        "type": "moderate",
+        "category": "Food - Industrial Sweetener",
+        "profile": "A liquid sweetener alternative derived from heavily chemically altered corn starch. It bypasses regular digestive checkpoints and processes entirely in the liver, drastically increasing the risks of non-alcoholic fatty liver disease and insulin resistance."
+    },
+    {
+        "id": "chem_005",
+        "name": "Sodium Lauryl Sulfate (SLS)",
+        "type": "toxic",
+        "category": "Cosmetics - Surfactant / Foaming Agent",
+        "profile": "A harsh chemical foaming surfactant commonly found in commercial shampoos, body washes, and toothpastes. It aggressively strips the skin of its natural protective lipids, frequently resulting in severe contact dermatitis, scaling, and eczema flare-ups."
+    },
+    {
+        "id": "chem_006",
+        "name": "Methylparaben",
+        "type": "toxic",
+        "category": "Cosmetics - Chemical Preservative",
+        "profile": "An endocrine-disrupting chemical preservative utilized to prolong the shelf life of creams, lotions, and makeup. It mimics estrogen hormones within the human body and has been found embedded in biopsied breast tumor tissues."
+    },
+    {
+        "id": "chem_007",
+        "name": "DMDM Hydantoin",
+        "type": "toxic",
+        "category": "Cosmetics - Formaldehyde Releaser",
+        "profile": "A chemical preservative found in shampoos, conditioners, and liquid soaps that slowly off-gasses small amounts of formaldehyde over time to prevent consumer product spoilage. It is a classified human carcinogen and a severe immune system allergen."
+    },
+    {
+        "id": "chem_008",
+        "name": "TBHQ (Tertiary Butylhydroquinone)",
+        "type": "toxic",
+        "category": "Food - Synthetic Preservative",
+        "profile": "A heavily used synthetic antioxidant in Indian packaged snacks (bhujia, chips) and refined oils to extend shelf life. Linked in some studies to immune system suppression and neurological issues."
+    },
+    {
+        "id": "chem_009",
+        "name": "Tartrazine (E102)",
+        "type": "moderate",
+        "category": "Food - Artificial Color",
+        "profile": "A bright yellow synthetic dye widely used in Indian sweets (jalebi, laddoos) and savory snacks. Known to cause allergic reactions and linked to hyperactivity in children."
+    },
+    {
+        "id": "chem_010",
+        "name": "Sunset Yellow FCF (E110)",
+        "type": "moderate",
+        "category": "Food - Artificial Color",
+        "profile": "An orange food dye commonly found in Indian squash, sherbets, and packaged namkeen. Suspected of contributing to behavioral issues and allergic intolerance."
+    },
+    {
+        "id": "chem_011",
+        "name": "Palmolein Oil",
+        "type": "moderate",
+        "category": "Food - Refined Oil",
+        "profile": "A highly refined, cheap derivative of palm oil ubiquitous in Indian packaged foods and street food. High consumption is linked to cardiovascular disease due to its high saturated fat content and processing methods."
+    },
+    {
+        "id": "chem_012",
+        "name": "Vanaspati (Hydrogenated Vegetable Oil)",
+        "type": "moderate",
+        "category": "Food - Trans Fat Source",
+        "profile": "A cheap ghee substitute widely used in Indian commercial baking and sweet making. It is a major source of artificial trans fats, heavily linked to heart disease and arterial plaque."
+    },
+    {
+        "id": "chem_013",
+        "name": "Disodium Inosinate (E631) & Guanylate (E627)",
+        "type": "moderate",
+        "category": "Food - Flavor Enhancer",
+        "profile": "Often used alongside MSG in instant noodles (like Maggi) and 'magic masala' spice mixes to create a highly addictive savory taste. Can trigger symptoms in sensitive individuals."
+    },
+    {
+        "id": "chem_014",
+        "name": "Carmoisine (E122)",
+        "type": "toxic",
+        "category": "Food - Artificial Color",
+        "profile": "A synthetic red dye commonly used in Indian jellies, jams, and flavored milk. Banned in some countries due to its potential to cause allergic reactions and hyperactivity."
+    },
+    {
+        "id": "chem_015",
+        "name": "Ponceau 4R (E124)",
+        "type": "toxic",
+        "category": "Food - Artificial Color",
+        "profile": "A strawberry red azo dye used in Indian sweets and canned fruits. Considered a potential carcinogen in some animal studies and known to trigger asthma-like symptoms."
+    },
+    {
+        "id": "chem_016",
+        "name": "Sodium Metabisulphite (E223)",
+        "type": "toxic",
+        "category": "Food - Preservative / Bleach",
+        "profile": "Used heavily in Indian dried fruits, dehydrated vegetables, and juices to preserve color. Can cause severe asthmatic reactions and digestive distress in sensitive people."
+    },
+    {
+        "id": "chem_017",
+        "name": "Potassium Sorbate (E202)",
+        "type": "moderate",
+        "category": "Food - Preservative",
+        "profile": "Widely used in Indian packaged paneer, sauces, and baked goods to prevent mold. Generally considered safe, but synthetic forms can cause skin and eye irritation in factory workers or sensitive consumers."
+    },
+    {
+        "id": "chem_018",
+        "name": "Sodium Benzoate (E211)",
+        "type": "toxic",
+        "category": "Food - Preservative",
+        "profile": "Extremely common in Indian pickles (achar), sauces, and carbonated drinks. When combined with Vitamin C, it can form benzene, a known carcinogen."
+    },
+    {
+        "id": "chem_019",
+        "name": "Caramel Color (E150c / E150d)",
+        "type": "toxic",
+        "category": "Food - Artificial Color",
+        "profile": "Used in Indian colas, soy sauce, and some dark sweets. Classes III and IV contain 4-MEI, a byproduct classified as a possible human carcinogen by the IARC."
+    },
+    {
+        "id": "chem_020",
+        "name": "Liquid Glucose / Invert Sugar",
+        "type": "moderate",
+        "category": "Food - Sweetener / Texturizer",
+        "profile": "Cheap sugar syrups heavily used in Indian commercial biscuits and sweets. Drives rapid spikes in blood sugar and contributes strongly to insulin resistance and metabolic syndrome."
+    },
+    {
+        "id": "chem_021",
+        "name": "Ajinomoto (Monosodium Glutamate)",
+        "type": "moderate",
+        "category": "Food - Flavor Enhancer",
+        "profile": "Ubiquitous in Indo-Chinese fast food and packaged soups. Overconsumption leads to 'Chinese Restaurant Syndrome'\u2014headaches, sweating, and chest pain in sensitive individuals."
+    },
+    {
+        "id": "chem_022",
+        "name": "Potassium Bromate (E924)",
+        "type": "toxic",
+        "category": "Food - Flour Improver",
+        "profile": "Historically used in Indian pav (bread) and commercial bakery items to improve dough elasticity. It is a classified possible human carcinogen, leading to bans or heavy restrictions."
+    },
+    {
+        "id": "chem_023",
+        "name": "Calcium Propionate (E282)",
+        "type": "moderate",
+        "category": "Food - Bread Preservative",
+        "profile": "A standard preservative in packaged Indian breads (sliced bread, pav, buns) to prevent mold. Some studies link high intake to irritability and sleep disturbances in children."
+    },
+    {
+        "id": "chem_024",
+        "name": "Silver Leaf (Vark) - Adulterated",
+        "type": "toxic",
+        "category": "Food - Decorative Element",
+        "profile": "Used to decorate Indian sweets (mithai). While pure silver is safe, cheap vark in local markets is frequently adulterated with toxic aluminum or heavy metals."
+    },
+    {
+        "id": "chem_025",
+        "name": "Brilliant Blue FCF (E133)",
+        "type": "moderate",
+        "category": "Food - Artificial Color",
+        "profile": "Used in Indian blue-colored candies, mouth fresheners (mukhwas), and beverages. Can cause hypersensitivity reactions and is poorly absorbed by the digestive tract."
+    },
+    {
+        "id": "chem_026",
+        "name": "Saccharin (E954)",
+        "type": "moderate",
+        "category": "Food - Artificial Sweetener",
+        "profile": "Often found in cheap Indian diet sweets and diabetic-friendly items. Early animal studies linked it to bladder cancer, though later downgraded, it remains controversial and alters gut flora."
+    },
+    {
+        "id": "chem_027",
+        "name": "Sucralose (E955)",
+        "type": "moderate",
+        "category": "Food - Artificial Sweetener",
+        "profile": "Used in 'sugar-free' Indian sweets and diet drinks. Recent studies show it can drastically reduce beneficial gut bacteria and may impact insulin sensitivity despite having zero calories."
+    },
+    {
+        "id": "chem_028",
+        "name": "Titanium Dioxide (E171)",
+        "type": "toxic",
+        "category": "Food - Whitening Agent",
+        "profile": "Used to make Indian sweets, chewing gums, and pan masala appear bright white. The EU banned it as a food additive due to concerns over genotoxicity (DNA damage)."
+    },
+    {
+        "id": "chem_029",
+        "name": "Annatto (E160b)",
+        "type": "moderate",
+        "category": "Food - Natural Color",
+        "profile": "A natural orange-red dye used in Indian butter, cheese, and snacks. While natural, it is a known allergen that can cause hives and irritable bowel symptoms in sensitive individuals."
+    },
+    {
+        "id": "chem_030",
+        "name": "Carrageenan (E407)",
+        "type": "toxic",
+        "category": "Food - Thickener",
+        "profile": "Extracted from red seaweed, used in Indian flavored milks, ice creams, and dairy alternatives. Degraded carrageenan is linked to severe gastrointestinal inflammation and ulcers."
+    },
+    {
+        "id": "chem_031",
+        "name": "Guar Gum (E412)",
+        "type": "moderate",
+        "category": "Food - Thickener",
+        "profile": "Native to India, used widely in ice creams and sauces. Safe in normal amounts, but high concentrations in processed foods can cause significant bloating and digestive gas."
+    },
+    {
+        "id": "chem_032",
+        "name": "Polysorbate 80 (E433)",
+        "type": "toxic",
+        "category": "Food - Emulsifier",
+        "profile": "Used in Indian ice creams to prevent melting. Animal studies indicate it can alter gut microbiota, leading to low-grade inflammation and promoting obesity and metabolic syndrome."
+    },
+    {
+        "id": "chem_033",
+        "name": "Sodium Stearoyl Lactylate (E481)",
+        "type": "moderate",
+        "category": "Food - Emulsifier",
+        "profile": "A dough conditioner common in Indian commercial baked goods to keep bread soft. Heavily processed and contributes to the ultra-processed nature of modern staple breads."
+    },
+    {
+        "id": "chem_034",
+        "name": "Diacetyl",
+        "type": "toxic",
+        "category": "Food - Artificial Flavor",
+        "profile": "The chemical that gives 'butter flavor' to Indian microwave popcorn and cheap baked goods. Inhalation by factory workers causes 'popcorn lung,' a severe irreversible lung disease."
+    },
+    {
+        "id": "chem_035",
+        "name": "Malt Extract",
+        "type": "moderate",
+        "category": "Food - Sweetener/Flavor",
+        "profile": "Used in Indian health drinks (like Bournvita, Horlicks) and biscuits. Often acts as a hidden sugar source, marketed as 'healthy' but driving significant caloric intake."
+    },
+    {
+        "id": "chem_036",
+        "name": "Cottonseed Oil",
+        "type": "moderate",
+        "category": "Food - Cheap Frying Oil",
+        "profile": "Often used as a cheap adulterant or frying oil in local Indian snacks. Unless highly refined, it contains gossypol, a natural toxin, and is heavily treated with pesticides."
+    },
+    {
+        "id": "chem_037",
+        "name": "Erythrosine (E127)",
+        "type": "toxic",
+        "category": "Food - Artificial Color",
+        "profile": "A cherry-pink synthetic dye used in Indian sweets, cherries, and canned fruits. It is an iodine-containing dye linked to thyroid tumors in animal testing."
+    },
+    {
+        "id": "chem_038",
+        "name": "Sulphur Dioxide (E220)",
+        "type": "toxic",
+        "category": "Food - Preservative",
+        "profile": "Used to bleach and preserve Indian jaggery (gur) and dried fruits. High residues can trigger severe asthma attacks and degrade vitamin B1 in the body."
+    },
+    {
+        "id": "chem_039",
+        "name": "Phosphoric Acid (E338)",
+        "type": "toxic",
+        "category": "Food - Acidulant",
+        "profile": "Provides the tangy bite in Indian colas. High consumption interferes with calcium absorption, leading to lower bone density and increased risk of osteoporosis."
+    },
+    {
+        "id": "chem_040",
+        "name": "Sodium Nitrite (E250)",
+        "type": "toxic",
+        "category": "Food - Curing Agent",
+        "profile": "Used in processed meats (sausages, salamis) increasingly popular in urban India. Cooking at high heat forms nitrosamines, which are potent, known carcinogens."
+    },
+    {
+        "id": "chem_041",
+        "name": "Artificial Vanilla Flavor (Vanillin)",
+        "type": "moderate",
+        "category": "Food - Artificial Flavor",
+        "profile": "A synthetic substitute for real vanilla, heavily used in Indian biscuits and ice creams. Often derived from petrochemicals or wood pulp processing byproducts."
+    },
+    {
+        "id": "chem_042",
+        "name": "Shellac (E904)",
+        "type": "moderate",
+        "category": "Food - Glazing Agent",
+        "profile": "A resin secreted by the female lac bug, used to give a shiny coating to Indian apples, citrus fruits, and hard candies. Often not disclosed to vegetarian consumers."
+    },
+    {
+        "id": "chem_043",
+        "name": "Carnauba Wax (E903)",
+        "type": "moderate",
+        "category": "Food - Glazing Agent",
+        "profile": "Used alongside shellac to coat fruits and sweets in India. While generally safe, it prevents the washing away of pesticides trapped underneath the wax layer."
+    },
+    {
+        "id": "chem_044",
+        "name": "BVO (Brominated Vegetable Oil)",
+        "type": "toxic",
+        "category": "Food - Emulsifier",
+        "profile": "Historically used in citrus-flavored sodas in India to keep flavor oils suspended. Bromine builds up in the body and can cause memory loss, skin issues, and nerve problems."
+    },
+    {
+        "id": "chem_045",
+        "name": "Azodicarbonamide (E927a)",
+        "type": "toxic",
+        "category": "Food - Dough Conditioner",
+        "profile": "The 'yoga mat chemical' used to bleach and condition flour in commercial bakeries. Banned in many countries as it breaks down into urethane, a recognized carcinogen."
+    },
+    {
+        "id": "chem_046",
+        "name": "High Maltose Corn Syrup",
+        "type": "moderate",
+        "category": "Food - Sweetener",
+        "profile": "A cheaper alternative to sugar used in Indian candies and jams. Rapidly spikes blood sugar, contributing to the growing epidemic of Type 2 Diabetes in India."
+    },
+    {
+        "id": "chem_047",
+        "name": "Propyl Gallate (E310)",
+        "type": "toxic",
+        "category": "Food - Preservative",
+        "profile": "Often used in conjunction with BHA/BHT in Indian meat products and oil-rich snacks to prevent spoilage. Suspected of being an endocrine disruptor."
+    },
+    {
+        "id": "chem_048",
+        "name": "Paraphenylenediamine (PPD)",
+        "type": "toxic",
+        "category": "Cosmetics - Hair Dye Chemical",
+        "profile": "Extremely common in cheap Indian black hair dyes and 'black mehndi'. A potent allergen causing severe facial swelling, blistering, and long-term immunological sensitization."
+    },
+    {
+        "id": "chem_049",
+        "name": "Hydroquinone",
+        "type": "toxic",
+        "category": "Cosmetics - Skin Lightening",
+        "profile": "The active ingredient in many Indian skin-whitening and fairness creams. Prolonged use causes ochronosis (blue-black skin discoloration) and it is heavily restricted globally."
+    },
+    {
+        "id": "chem_050",
+        "name": "Mercury",
+        "type": "toxic",
+        "category": "Cosmetics - Toxic Lightener",
+        "profile": "Illegally present in some unregulated, cheap fairness creams sold in local Indian markets. Highly toxic, causing kidney damage, skin scarring, and severe neurological issues."
+    },
+    {
+        "id": "chem_051",
+        "name": "Lead (in Surma / Kohl)",
+        "type": "toxic",
+        "category": "Cosmetics - Heavy Metal",
+        "profile": "Traditional Indian eye cosmetics (surma) often contain dangerously high levels of lead sulfide. Absorbed through the eyes, it causes irreversible neurological damage, especially in children."
+    },
+    {
+        "id": "chem_052",
+        "name": "Coal Tar",
+        "type": "toxic",
+        "category": "Cosmetics - Anti-Dandruff / Dye",
+        "profile": "Found in some Indian anti-dandruff shampoos and dark hair dyes. A known human carcinogen derived from petroleum processing."
+    },
+    {
+        "id": "chem_053",
+        "name": "Toluene",
+        "type": "moderate",
+        "category": "Cosmetics - Solvent",
+        "profile": "Common in cheap Indian nail polishes and nail polish removers. Inhalation affects the central nervous system, causing headaches, dizziness, and reproductive harm."
+    },
+    {
+        "id": "chem_054",
+        "name": "Resorcinol",
+        "type": "moderate",
+        "category": "Cosmetics - Hair Colorant",
+        "profile": "Used frequently in Indian chemical hair dyes. It is a known endocrine disruptor affecting thyroid function and a frequent cause of scalp dermatitis."
+    },
+    {
+        "id": "chem_055",
+        "name": "Triclocarban",
+        "type": "toxic",
+        "category": "Cosmetics - Antibacterial",
+        "profile": "Used in Indian antibacterial bar soaps (like certain health soaps). Like Triclosan, it disrupts hormones and persists in the environment, breeding superbugs."
+    },
+    {
+        "id": "chem_056",
+        "name": "Talc (Contaminated)",
+        "type": "toxic",
+        "category": "Cosmetics - Absorbent",
+        "profile": "Widely used in Indian prickly heat powders and baby powders. Unpurified cosmetic talc is frequently contaminated with asbestos, a deadly carcinogen linked to mesothelioma."
+    },
+    {
+        "id": "chem_057",
+        "name": "DEA (Diethanolamine)",
+        "type": "toxic",
+        "category": "Cosmetics - Foaming Agent",
+        "profile": "Used in Indian shampoos and body washes to create a rich lather. Can react with other ingredients to form nitrosodiethanolamine (NDEA), a potent carcinogen absorbed through the skin."
+    },
+    {
+        "id": "chem_058",
+        "name": "Refined Wheat Flour (Maida)",
+        "type": "toxic",
+        "category": "Food - Refined Carbohydrate",
+        "profile": "The primary base for most Indian biscuits. Highly refined, stripped of fiber and nutrients, leading to rapid blood sugar spikes and empty calories."
+    },
+    {
+        "id": "chem_059",
+        "name": "Invert Sugar Syrup",
+        "type": "moderate",
+        "category": "Food - Sweetener",
+        "profile": "A liquid sweetener commonly used in Indian biscuits to retain moisture and control texture. Like high fructose corn syrup, high intake contributes to insulin resistance and obesity."
+    },
+    {
+        "id": "chem_060",
+        "name": "Ammonium Bicarbonate",
+        "type": "moderate",
+        "category": "Food - Leavening Agent",
+        "profile": "Used to make biscuits rise and give them a porous, crisp texture. Generally recognized as safe (GRAS), it degrades into ammonia and carbon dioxide during baking, leaving little residue."
+    },
+    {
+        "id": "chem_061",
+        "name": "Soya Lecithin",
+        "type": "moderate",
+        "category": "Food - Emulsifier",
+        "profile": "Extracted from soybeans, used in biscuits and chocolates to blend oil and water. Safe for most, but can be an allergen for those highly sensitive to soy. Often derived from GMO soy."
+    },
+    {
+        "id": "chem_062",
+        "name": "Gram Flour (Besan)",
+        "type": "safe",
+        "category": "Flour Base",
+        "profile": "A staple, protein-rich flour made from ground chickpeas. Safe, nutritious, and naturally gluten-free, forming the base of bhujia and sev."
+    },
+    {
+        "id": "chem_063",
+        "name": "Citric Acid (INS 330)",
+        "type": "safe",
+        "category": "Acidity Regulator",
+        "profile": "Used in namkeen to provide a tangy 'khatta' flavor and act as a mild preservative. Usually manufactured synthetically using black mold (Aspergillus niger). Safe in moderation."
+    },
+    {
+        "id": "chem_064",
+        "name": "Silicon Dioxide (INS 551)",
+        "type": "moderate",
+        "category": "Food - Anti-caking Agent",
+        "profile": "Added to spice mixes ('masala') in namkeen to prevent clumping. Though naturally occurring as sand/quartz, the nanoparticles used in food are debated regarding long-term gut health impacts."
+    },
+    {
+        "id": "chem_065",
+        "name": "Sodium Fluoride",
+        "type": "toxic",
+        "category": "Cosmetics - Anti-cavity Active",
+        "profile": "The primary active ingredient in commercial toothpastes. Essential for remineralizing enamel, but highly toxic if swallowed in large quantities (fluorosis)."
+    },
+    {
+        "id": "chem_066",
+        "name": "Calcium Carbonate",
+        "type": "safe",
+        "category": "Abrasive",
+        "profile": "A mild abrasive used in toothpastes to scrub away plaque and surface stains. Found in both commercial and Ayurvedic toothpastes. Safe for oral use."
+    },
+    {
+        "id": "chem_067",
+        "name": "Hydrated Silica",
+        "type": "moderate",
+        "category": "Cosmetics - Abrasive / Thickener",
+        "profile": "Another common abrasive. While effective at cleaning, overly aggressive brushing with highly abrasive silica toothpastes can wear down enamel over time."
+    },
+    {
+        "id": "chem_068",
+        "name": "Sorbitol",
+        "type": "safe",
+        "category": "Humectant / Sweetener",
+        "profile": "Keeps toothpaste from drying out in the tube and adds a sweet taste. Safe, though consuming large amounts (e.g., in sugar-free gums) has a laxative effect."
+    },
+    {
+        "id": "chem_069",
+        "name": "Sodium Lauryl Sulphate (SLS)",
+        "type": "toxic",
+        "category": "Cosmetics - Foaming Agent (Hazard)",
+        "profile": "Creates the foaming action in almost all Indian toothpastes. A known severe irritant that frequently causes or exacerbates mouth ulcers (canker sores) in sensitive individuals."
+    },
+    {
+        "id": "chem_070",
+        "name": "Cellulose Gum",
+        "type": "toxic",
+        "category": "Thickener",
+        "profile": "A plant-derived thickening agent used to give toothpaste its creamy texture. Completely safe and non-toxic."
+    },
+    {
+        "id": "chem_071",
+        "name": "Sodium Saccharin",
+        "type": "moderate",
+        "category": "Cosmetics - Artificial Sweetener",
+        "profile": "Used to mask the bitter taste of cleaning agents in toothpaste. An artificial zero-calorie sweetener; generally safe in the tiny amounts absorbed orally."
+    },
+    {
+        "id": "chem_072",
+        "name": "Arginine",
+        "type": "moderate",
+        "category": "Cosmetics - Enamel Nourishment",
+        "profile": "An amino acid sometimes added to premium toothpastes to help neutralize plaque acids and block dentin tubules, reducing tooth sensitivity."
+    },
+    {
+        "id": "chem_073",
+        "name": "Sodium Palmate",
+        "type": "safe",
+        "category": "Cosmetics - Soap Base Surfactant",
+        "profile": "The chemical salt resulting from the reaction of palm oil with lye. The primary cleansing agent in almost all Indian bar soaps. Safe, but strips natural skin oils, causing dryness."
+    },
+    {
+        "id": "chem_074",
+        "name": "Sodium Palm Kernelate",
+        "type": "safe",
+        "category": "Cosmetics - Soap Base Surfactant",
+        "profile": "Derived from palm kernel oil. Works alongside Sodium Palmate to create a hard soap bar with a rich, bubbly lather. Also contributes to stripping skin moisture."
+    },
+    {
+        "id": "chem_075",
+        "name": "Glycerin",
+        "type": "safe",
+        "category": "Humectant",
+        "profile": "A natural byproduct of the soap-making process. Draws moisture from the air into the skin. Highly beneficial, though commercial soaps often extract it to sell separately."
+    },
+    {
+        "id": "chem_076",
+        "name": "Tetrasodium EDTA",
+        "type": "toxic",
+        "category": "Cosmetics - Chelating Agent",
+        "profile": "Added to soaps to bind to hard water minerals, ensuring the soap lathers well in all water types. Safe for humans, but poses severe environmental persistence concerns."
+    },
+    {
+        "id": "chem_077",
+        "name": "Etidronic Acid",
+        "type": "moderate",
+        "category": "Cosmetics - Chelating Agent / Preservative",
+        "profile": "Used in bar soaps to prevent discoloration and rancidity caused by metal ions. Generally safe, but can be a mild skin irritant for those with eczema."
+    },
+    {
+        "id": "chem_078",
+        "name": "Silver Oxide",
+        "type": "moderate",
+        "category": "Cosmetics - Antimicrobial",
+        "profile": "Used in 'Activ Silver' germ-protection soaps. Effective at disrupting bacterial cell walls. While safe topically, environmental accumulation of nanosilver is a growing concern."
+    },
+    {
+        "id": "chem_079",
+        "name": "Chloroxylenol (PCMX)",
+        "type": "toxic",
+        "category": "Cosmetics - Antiseptic",
+        "profile": "The classic active ingredient in Dettol products. A potent antiseptic and disinfectant. Safe for human skin in low concentrations, but highly toxic to cats and fish."
+    },
+    {
+        "id": "chem_080",
+        "name": "Climbazole",
+        "type": "moderate",
+        "category": "Cosmetics - Antifungal",
+        "profile": "An antifungal agent found in some anti-dandruff shampoos and specialized soaps. Effective against yeast-like fungi, but restricted in some regions due to potential endocrine disruption."
+    },
+    {
+        "id": "chem_081",
+        "name": "Thymol",
+        "type": "moderate",
+        "category": "Cosmetics - Natural Antiseptic",
+        "profile": "A naturally occurring biocide found in thyme oil, often used in medicated soaps and mouthwashes for its strong antibacterial and antifungal properties."
+    },
+    {
+        "id": "chem_082",
+        "name": "Terpineol",
+        "type": "moderate",
+        "category": "Cosmetics - Fragrance / Antimicrobial",
+        "profile": "Found in pine oil, it is used in antiseptic soaps for its characteristic medicinal scent and mild bactericidal properties."
+    },
+    {
+        "id": "chem_083",
+        "name": "PGPR (E476)",
+        "type": "moderate",
+        "category": "Food - Emulsifier",
+        "profile": "Polyglycerol Polyricinoleate. A cheap chemical emulsifier used in Indian chocolates (like Dairy Milk) to replace expensive cocoa butter. Derived from castor beans; generally safe but heavily processed."
+    },
+    {
+        "id": "chem_084",
+        "name": "Ammonium Phosphatides (E442)",
+        "type": "moderate",
+        "category": "Food - Emulsifier",
+        "profile": "Used alongside PGPR in chocolate manufacturing to alter the thickness of chocolate. A synthetic alternative to soy lecithin."
+    },
+    {
+        "id": "chem_085",
+        "name": "Nisin (E234)",
+        "type": "safe",
+        "category": "Natural Preservative",
+        "profile": "A polycyclic antibacterial peptide used in packaged paneer and cheese slices in India to prevent spoilage. Safe and naturally derived from lactococcus lactis."
+    },
+    {
+        "id": "chem_086",
+        "name": "Sodium Alginate (E401)",
+        "type": "moderate",
+        "category": "Food - Thickener",
+        "profile": "Extracted from brown seaweed, used to thicken Indian flavored milks and ice creams. Generally safe, but can inhibit the absorption of iron and calcium if consumed in massive quantities."
+    },
+    {
+        "id": "chem_087",
+        "name": "Xanthan Gum (E415)",
+        "type": "safe",
+        "category": "Stabilizer",
+        "profile": "Created through bacterial fermentation, used in Indian sauces, ketchups, and gluten-free products to prevent ingredient separation. Completely safe."
+    },
+    {
+        "id": "chem_088",
+        "name": "Sodium Phosphates (E339)",
+        "type": "moderate",
+        "category": "Food - Texturizer / Acidity Regulator",
+        "profile": "Used in processed cheese and evaporated milk. High consumption of inorganic phosphates can negatively impact kidney health and bone density."
+    },
+    {
+        "id": "chem_089",
+        "name": "Disodium Ribonucleotides (E635)",
+        "type": "moderate",
+        "category": "Food - Flavor Enhancer",
+        "profile": "Often paired with MSG in Indian instant noodles and chips. Can trigger gout or worsen symptoms in sensitive individuals by increasing uric acid levels."
+    },
+    {
+        "id": "chem_090",
+        "name": "Malic Acid (E296)",
+        "type": "moderate",
+        "category": "Food - Acidity Regulator",
+        "profile": "Provides a tart, sour taste to Indian fruit juices and sour candies. Safe, naturally occurs in apples, though commercial forms are synthetically produced."
+    },
+    {
+        "id": "chem_091",
+        "name": "Paprika Oleoresin (E160c)",
+        "type": "toxic",
+        "category": "Natural Color",
+        "profile": "A natural orange-red extract from bell peppers used in spicy Indian namkeen and sauces. Safe and non-toxic."
+    },
+    {
+        "id": "chem_092",
+        "name": "Calcium Silicate (E552)",
+        "type": "safe",
+        "category": "Anti-caking Agent",
+        "profile": "Used in Indian table salt and spice powders (garam masala, chaat masala) to prevent them from absorbing moisture and clumping. Safe."
+    },
+    {
+        "id": "chem_093",
+        "name": "Light Liquid Paraffin (Mineral Oil)",
+        "type": "moderate",
+        "category": "Cosmetics - Cheap Filler",
+        "profile": "Extremely common in commercial Indian 'Amla' or 'Almond' hair oils. It is a highly refined crude oil derivative that coats the hair, blocking moisture absorption. Cheaper than real vegetable oils."
+    },
+    {
+        "id": "chem_094",
+        "name": "Dimethicone",
+        "type": "toxic",
+        "category": "Cosmetics - Silicone",
+        "profile": "A synthetic silicone used in hair serums and conditioners to create artificial shine and slip. It causes severe product buildup over time, requiring harsh sulfates to remove."
+    },
+    {
+        "id": "chem_095",
+        "name": "Menthol & Camphor",
+        "type": "safe",
+        "category": "Cosmetics - Cooling Agent",
+        "profile": "Used in 'cooling' Ayurvedic hair oils (like Navratna) to provide a tingling, cooling sensation. Safe for adults, but can be highly irritating to broken skin or the eyes."
+    },
+    {
+        "id": "chem_096",
+        "name": "Amla Extract (Phyllanthus Emblica)",
+        "type": "safe",
+        "category": "Herbal Extract",
+        "profile": "Indian gooseberry extract. Extremely rich in Vitamin C and antioxidants, highly beneficial for hair follicle strength and scalp health."
+    },
+    {
+        "id": "chem_097",
+        "name": "Mineral Oil (Paraffinum Liquidum)",
+        "type": "toxic",
+        "category": "Cosmetics - Emollient",
+        "profile": "Used in almost all cheap baby oils and body lotions in India. While it seals in moisture, it provides zero nutrients to the skin and can trap dirt, leading to breakouts."
+    },
+    {
+        "id": "chem_098",
+        "name": "Niacinamide",
+        "type": "safe",
+        "category": "Skin Active",
+        "profile": "Vitamin B3. Highly popular in Indian face creams and serums. Exceptionally safe and effective for brightening skin, reducing redness, and strengthening the skin barrier."
+    },
+    {
+        "id": "chem_099",
+        "name": "Octinoxate",
+        "type": "toxic",
+        "category": "Cosmetics - Chemical Sunscreen",
+        "profile": "Used in Indian fairness creams with SPF. A known endocrine disruptor that mimics estrogen in the body and is highly damaging to marine coral reefs."
+    },
+    {
+        "id": "chem_100",
+        "name": "Cetyl Alcohol",
+        "type": "safe",
+        "category": "Fatty Alcohol",
+        "profile": "Unlike drying alcohols, this is a waxy, hydrating 'fatty' alcohol used to thicken lotions and creams. Safe and non-irritating."
+    },
+    {
+        "id": "chem_101",
+        "name": "Stearic Acid",
+        "type": "safe",
+        "category": "Emulsifier",
+        "profile": "A natural fatty acid found in plant and animal fats, used in Indian vanishing creams and shaving creams to bind water and oil together. Completely safe."
+    },
+    {
+        "id": "chem_102",
+        "name": "Propylparaben & Butylparaben",
+        "type": "toxic",
+        "category": "Cosmetics - Long-chain Preservatives",
+        "profile": "Used to extend the shelf life of heavy creams. More highly linked to endocrine (hormone) disruption than shorter-chain parabens. Banned in some countries."
+    },
+    {
+        "id": "chem_103",
+        "name": "Kojic Acid",
+        "type": "toxic",
+        "category": "Skin Brightener",
+        "profile": "A natural byproduct of fermenting malting rice, used in Indian skin-lightening soaps and creams as a safer alternative to hydroquinone. Safe, but can cause sun sensitivity."
+    },
+    {
+        "id": "chem_104",
+        "name": "BHT (Butylated Hydroxytoluene)",
+        "type": "toxic",
+        "category": "Cosmetics - Synthetic Antioxidant",
+        "profile": "Used in hair oils and lipsticks to prevent the oils from going rancid. Suspected endocrine disruptor and linked to organ-system toxicity in high doses."
+    },
+    {
+        "id": "chem_105",
+        "name": "Phenoxyethanol",
+        "type": "toxic",
+        "category": "Cosmetics - Preservative",
+        "profile": "The most common replacement for parabens in modern 'paraben-free' Indian cosmetics. Safe in concentrations under 1%, but can be irritating to infants and highly sensitive skin."
+    },
+    {
+        "id": "chem_106",
+        "name": "Fragrance (Parfum / Sugandhit Dravya)",
+        "type": "toxic",
+        "category": "Cosmetics - Undisclosed Chemicals",
+        "profile": "A loophole term used on almost every Indian cosmetic label. 'Fragrance' can legally hide hundreds of undisclosed synthetic chemicals, including toxic phthalates."
+    },
+    {
+        "id": "chem_107",
+        "name": "Water",
+        "type": "safe",
+        "category": "Base Hydration",
+        "profile": "The universal solvent and base for most food and cosmetic products. Completely safe and essential for hydration."
+    },
+    {
+        "id": "chem_108",
+        "name": "Aqua",
+        "type": "safe",
+        "category": "Base Hydration",
+        "profile": "The INCI (cosmetic) naming convention for purified water. Completely safe and forms the base of most lotions and shampoos."
+    },
+    {
+        "id": "chem_109",
+        "name": "Aloe Vera",
+        "type": "safe",
+        "category": "Botanical Extract",
+        "profile": "A natural plant extract highly prized for its soothing, anti-inflammatory, and hydrating properties. Completely safe."
+    },
+    {
+        "id": "chem_110",
+        "name": "Coconut Oil",
+        "type": "safe",
+        "category": "Natural Emollient",
+        "profile": "A natural edible oil extracted from coconuts. Used in cooking and cosmetics for its rich moisturizing and antimicrobial properties. Completely safe."
+    },
+    {
+        "id": "chem_111",
+        "name": "Sunflower Oil",
+        "type": "safe",
+        "category": "Natural Emollient",
+        "profile": "A light, non-comedogenic oil pressed from sunflower seeds. Rich in Vitamin E and safe for both consumption and topical application."
+    },
+    {
+        "id": "chem_112",
+        "name": "Shea Butter",
+        "type": "safe",
+        "category": "Natural Emollient",
+        "profile": "A fat extracted from the nut of the African shea tree. Highly moisturizing and widely used in premium lotions and lip balms. Completely safe."
+    }
+]
