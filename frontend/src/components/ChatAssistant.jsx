@@ -81,7 +81,7 @@ export default function ChatAssistant({ scannedIngredients = [] }) {
       )}
 
       {isOpen && (
-        <div className="fixed top-0 right-0 w-full md:w-[450px] h-screen bg-primary shadow-2xl border-l border-secondary z-[999] flex flex-col animate-in slide-in-from-right duration-300">
+        <div className="fixed inset-y-0 right-0 w-full md:w-[450px] bg-primary shadow-2xl border-l border-secondary z-[999] flex flex-col animate-in slide-in-from-right duration-300">
           {/* Header */}
           <div className="p-5 border-b border-secondary bg-secondary/50 flex justify-between items-center backdrop-blur-md">
             <div className="flex items-center gap-3">
