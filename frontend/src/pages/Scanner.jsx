@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ScanSearch, AlertTriangle, ShieldCheck, HelpCircle, AlertCircle } from "lucide-react";
 import ChatAssistant from "../components/ChatAssistant";
+import { API_BASE_URL } from "../config";
 
 export default function Scanner() {
   const [ingredientText, setIngredientText] = useState("");
@@ -18,7 +19,7 @@ export default function Scanner() {
     setResult(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/analyze", {
+      const response = await fetch(`${API_BASE_URL}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: ingredientText }),

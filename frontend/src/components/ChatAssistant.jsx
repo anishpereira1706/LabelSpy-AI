@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MessageSquare, X, Send, Bot } from "lucide-react";
+import { API_BASE_URL } from "../config";
 
 const TypingBubble = ({ content, onComplete }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -39,7 +40,7 @@ export default function ChatAssistant({ scannedIngredients = [] }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/chat", {
+      const response = await fetch(`${API_BASE_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

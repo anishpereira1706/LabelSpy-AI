@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Database as DatabaseIcon, Search } from "lucide-react";
+import { API_BASE_URL } from "../config";
 
 export default function Database() {
   const [ingredients, setIngredients] = useState([]);
@@ -7,7 +8,7 @@ export default function Database() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/ingredients")
+    fetch(`${API_BASE_URL}/ingredients`)
       .then(res => res.json())
       .then(data => {
         setIngredients(data);
