@@ -25,7 +25,10 @@ export default function Scanner() {
         body: JSON.stringify({ text: ingredientText }),
       });
 
-      if (!response.ok) throw new Error("Server communication error.");
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.detail || "Server communication error.");
+      }
       const data = await response.json();
       setResult(data);
 
