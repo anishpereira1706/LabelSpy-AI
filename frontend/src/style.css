@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #ffffff;
+  --color-secondary: #e3f6f5;
+  --color-accent: #008489;
+  --color-dark: #272343;
+
+  /* Premium typography overrides */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Base resets for the soft light theme */
+body {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-primary); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent); 
+}

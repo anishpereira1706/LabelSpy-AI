@@ -2,11 +2,14 @@
 .env
 .env.*
 *.local
+**/.env
+**/.env.*
 
 # Python & Backend (FastAPI)
 venv/
 env/
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -14,14 +17,18 @@ __pycache__/
 .coverage
 htmlcov/
 .mypy_cache/
+.ipynb_checkpoints/
+*.db
+*.sqlite
+*.sqlite3
 
 # Node.js & Frontend (Vite / React)
 node_modules/
-frontend/node_modules/
+**/node_modules/
 dist/
-frontend/dist/
+**/dist/
 build/
-frontend/build/
+**/build/
 .npm
 npm-debug.log*
 yarn-debug.log*
