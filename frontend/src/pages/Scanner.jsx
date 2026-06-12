@@ -229,7 +229,7 @@
 
 
 import React, { useState } from "react";
-import { ScanSearch, AlertTriangle, ShieldCheck, HelpCircle, AlertCircle, Camera } from "lucide-react";
+import { ScanSearch, AlertTriangle, ShieldCheck, HelpCircle, AlertCircle, Upload } from "lucide-react";
 import Tesseract from "tesseract.js"; // Integrated OCR Engine
 import ChatAssistant from "../components/ChatAssistant";
 import { API_BASE_URL } from "../config";
@@ -371,19 +371,18 @@ export default function Scanner() {
           id="label-camera-input"
           type="file"
           accept="image/*"
-          capture="environment"
           onChange={handleImageUpload}
           disabled={loading}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
         />
         <div className="bg-secondary/80 p-3 rounded-full text-dark/70 mb-3 group-hover:scale-110 transition-transform">
-          <Camera className="w-6 h-6" />
+          <Upload className="w-6 h-6" />
         </div>
         <p className="text-sm font-bold text-dark/80 mb-1">
-          {ocrProgress ? "Processing Image Layer" : "Scan Label From Camera"}
+          {ocrProgress ? "Processing Image Layer" : "Upload Label Image"}
         </p>
         <p className="text-xs text-dark/50">
-          {ocrProgress ? ocrProgress : "Click to snap a picture or upload an ingredient photo"}
+          {ocrProgress ? ocrProgress : "Click to select or upload an ingredient label photo"}
         </p>
       </div>
 
