@@ -30,13 +30,21 @@ client = InferenceClient(
 
 # 4. Open and read our upgraded multi-category external database file
 print("📂 Loading universal ingredient dataset from disk...")
-with open("ingredients_dataset.json", "r") as file:
+script_dir = os.path.dirname(os.path.abspath(__file__))
+dataset_path = os.path.join(script_dir, "ingredients_dataset.json")
+with open(dataset_path, "r", encoding="utf-8") as file:
     food_additives = json.load(file)
 
 print(f"🧠 Processing {len(food_additives)} cross-category chemical profiles...")
 
 # 5. Run the upload execution loop exactly like your old vector step
 for item in food_additives:
+    # Check if the ingredient ID already exists in the Pinecone index to skip re-uploading
+    fetch_res = index.fetch(ids=[item["id"]])
+    if fetch_res and fetch_res.get("vectors") and item["id"] in fetch_res["vectors"]:
+        print(f"⏭️ Already in cloud (skipping): {item['name']}")
+        continue
+
     print(f"➡️ Transforming and syncing to cloud: {item['name']}")
 
     combined_text = f"Ingredient Name: {item['name']}. Description: {item['profile']}"
