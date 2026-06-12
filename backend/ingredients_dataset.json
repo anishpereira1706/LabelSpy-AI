@@ -1566,5 +1566,47 @@
         "type": "safe",
         "category": "Food - Sugar Alcohol Sweetener",
         "profile": "A sugar alcohol sweetener and humectant. Safe for consumption, commonly used in sugar-free gum, though can cause mild digestive bloating."
+    },
+    {
+        "id": "chem_225",
+        "name": "Sodium Cocoyl Glycinate",
+        "type": "safe",
+        "category": "Cosmetics - Surfactant",
+        "profile": "A mild amino acid-based surfactant derived from coconut. Commonly used in premium facewashes and baby soaps. Highly biodegradable and extremely gentle on the skin."
+    },
+    {
+        "id": "chem_226",
+        "name": "Potassium Iodate",
+        "type": "moderate",
+        "category": "Food - Dough Conditioner / Iodine Source",
+        "profile": "Used in bakery items and iodized table salt. While iodine is essential, excessive intake of potassium iodate can lead to thyroid dysfunction and is banned as a bread additive in some countries."
+    },
+    {
+        "id": "chem_227",
+        "name": "Polyglycerol Polyricinoleate (PGPR)",
+        "type": "moderate",
+        "category": "Food - Emulsifier",
+        "profile": "A cheap emulsifier derived from castor bean oil, widely used in Indian chocolates to reduce cocoa butter usage. Considered safe in moderation, but high intake can cause mild digestive issues."
+    },
+    {
+        "id": "chem_228",
+        "name": "Cocoamidopropyl Betaine (CAPB)",
+        "type": "moderate",
+        "category": "Cosmetics - Foaming Agent",
+        "profile": "A synthetic surfactant derived from coconut oil, common in Indian facewashes and shampoos. Much gentler than SLS, but can cause contact allergies in individuals sensitive to processing impurities."
+    },
+    {
+        "id": "chem_229",
+        "name": "BHA (Butylated Hydroxyanisole)",
+        "type": "toxic",
+        "category": "Food/Cosmetics - Synthetic Preservative",
+        "profile": "A synthetic antioxidant used to preserve oils and fats in packaged snacks and cosmetics. Classified as a possible human carcinogen by the WHO/IARC and an endocrine disruptor."
+    },
+    {
+        "id": "chem_230",
+        "name": "Guar Gum",
+        "type": "safe",
+        "category": "Food - Thickener / Stabilizer",
+        "profile": "A natural seed polysaccharide extracted from the guar bean, widely cultivated in India. Used as a binder in instant noodles (like Maggi) and sauces. Highly safe and acts as a prebiotic fiber."
     }
 ]
