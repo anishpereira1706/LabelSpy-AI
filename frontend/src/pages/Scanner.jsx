@@ -295,43 +295,99 @@ export default function Scanner() {
     return finalOutput;
   };
 
+  // 🧪 Automatic Image Enhancement Pipeline (HTML5 Canvas Filters)
+  const preprocessImage = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          // 📐 Scale down extremely large camera photos (e.g. 4K) to optimal OCR sizes
+          // Tesseract performs best when text font height is around 20-30px.
+          const MAX_DIM = 1600;
+          let width = img.width;
+          let height = img.height;
+          
+          if (width > MAX_DIM || height > MAX_DIM) {
+            if (width > height) {
+              height = Math.round((height * MAX_DIM) / width);
+              width = MAX_DIM;
+            } else {
+              width = Math.round((width * MAX_DIM) / height);
+              height = MAX_DIM;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          // Apply high-contrast grayscale filter to binarize text and filter shadows
+          ctx.filter = "grayscale(1) contrast(1.8) brightness(0.95)";
+          
+          // Draw image with the filters active
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Convert processed canvas back to data URL
+          resolve(canvas.toDataURL("image/jpeg", 0.9));
+        };
+        img.onerror = () => reject(new Error("Failed to load image file."));
+        img.src = event.target.result;
+      };
+      reader.onerror = () => reject(new Error("Failed to read image file."));
+      reader.readAsDataURL(file);
+    });
+  };
+
   // 📸 OCR Worker Execution Function
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     setLoading(true);
     setError("");
-    setOcrProgress("Initializing scanner pipeline...");
+    setOcrProgress("Enhancing label contrast...");
 
-    Tesseract.recognize(
-      file,
-      "eng", // Extract English alphabet characters
-      {
-        logger: (m) => {
-          if (m.status === "recognizing text") {
-            setOcrProgress(`Reading Label Image: ${Math.round(m.progress * 100)}%`);
-          }
-        },
-      }
-    )
-      .then(({ data: { text } }) => {
-        if (!text.trim()) {
-          throw new Error("Could not detect legible characters in image. Try a clearer angle.");
+    try {
+      // 1. Process image automatically to darken text and filter background shadows
+      const enhancedImageDataUrl = await preprocessImage(file);
+
+      setOcrProgress("Initializing scanner pipeline...");
+
+      Tesseract.recognize(
+        enhancedImageDataUrl,
+        "eng", // Extract English alphabet characters
+        {
+          logger: (m) => {
+            if (m.status === "recognizing text") {
+              setOcrProgress(`Reading Label Image: ${Math.round(m.progress * 100)}%`);
+            }
+          },
         }
+      )
+        .then(({ data: { text } }) => {
+          if (!text.trim()) {
+            throw new Error("Could not detect legible characters in image. Try a clearer angle.");
+          }
 
-        // ✨ Filter raw OCR blocks into clean comma-separated lists automatically
-        const parsedIngredients = cleanAndExtractIngredients(text);
+          // ✨ Filter raw OCR blocks into clean comma-separated lists automatically
+          const parsedIngredients = cleanAndExtractIngredients(text);
 
-        setIngredientText(parsedIngredients); // Pushes the cleaned data string right into your input box
-        setOcrProgress("");
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message || "OCR Engine failed to read image file.");
-        setOcrProgress("");
-        setLoading(false);
-      });
+          setIngredientText(parsedIngredients); // Pushes the cleaned data string right into your input box
+          setOcrProgress("");
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message || "OCR Engine failed to read image file.");
+          setOcrProgress("");
+          setLoading(false);
+        });
+    } catch (err) {
+      setError(err.message || "Image preprocessing failed.");
+      setLoading(false);
+    }
   };
 
   const handleScan = async (e) => {
@@ -671,7 +727,7 @@ export default function Scanner() {
         </div>
       )}
 
-      <ChatAssistant scannedIngredients={scannedIngredients} />
+      <ChatAssistant scannedIngredients={scannedIngredients} scanResult={result} />
     </div>
   );
 }

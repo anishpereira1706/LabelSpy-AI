@@ -1608,5 +1608,12 @@
         "type": "safe",
         "category": "Food - Thickener / Stabilizer",
         "profile": "A natural seed polysaccharide extracted from the guar bean, widely cultivated in India. Used as a binder in instant noodles (like Maggi) and sauces. Highly safe and acts as a prebiotic fiber."
+    },
+    {
+        "id": "chem_231",
+        "name": "Potassium Carbonate",
+        "type": "safe",
+        "category": "Food - Acidity Regulator / Stabilizer",
+        "profile": "An inorganic salt commonly used as an acidity regulator and stabilizer in baked goods, noodles, and cocoa processing. High safety profile and completely non-toxic."
     }
 ]

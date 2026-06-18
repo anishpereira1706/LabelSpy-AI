@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Database as DatabaseIcon, Search } from "lucide-react";
+import { Database as DatabaseIcon, Search, Cloud } from "lucide-react";
 import { API_BASE_URL } from "../config";
 
 export default function Database() {
   const [ingredients, setIngredients] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [pineconeCount, setPineconeCount] = useState(0);
+  const [loadingStats, setLoadingStats] = useState(true);
 
   useEffect(() => {
+    // Fetch local ingredients dataset
     fetch(`${API_BASE_URL}/ingredients`)
       .then(res => res.json())
       .then(data => {
@@ -17,6 +20,18 @@ export default function Database() {
       .catch(err => {
         console.error("Error fetching database:", err);
         setLoading(false);
+      });
+
+    // Fetch Pinecone live index statistics
+    fetch(`${API_BASE_URL}/database-stats`)
+      .then(res => res.json())
+      .then(data => {
+        setPineconeCount(data.total_vectors);
+        setLoadingStats(false);
+      })
+      .catch(err => {
+        console.error("Error fetching Pinecone stats:", err);
+        setLoadingStats(false);
       });
   }, []);
 
@@ -48,12 +63,30 @@ export default function Database() {
         </div>
 
         {!loading && (
-          <div className="px-6 py-3 border-b border-secondary bg-secondary/15 flex justify-between items-center text-xs text-dark/60 font-medium">
-            <div>
-              Total Chemicals Indexed: <span className="font-bold text-dark">{ingredients.length}</span>
+          <div className="px-6 py-3.5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-dark/60 font-semibold">
+            <div className="flex flex-wrap items-center gap-4">
+              <div>
+                Local Dataset: <span className="font-extrabold text-dark">{ingredients.length} chemicals</span>
+              </div>
+              <div className="hidden sm:block text-slate-300">|</div>
+              <div className="flex items-center gap-1.5">
+                <Cloud className="w-3.5 h-3.5 text-accent" />
+                Pinecone Cloud Index:{" "}
+                {loadingStats ? (
+                  <span className="text-dark/40 font-normal">loading...</span>
+                ) : (
+                  <span className={`font-extrabold flex items-center gap-1.5 ${pineconeCount > 0 ? "text-emerald-600" : "text-amber-600"}`}>
+                    {pineconeCount} vectors
+                    <span className={`relative flex h-2 w-2`}>
+                      <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${pineconeCount > 0 ? "bg-emerald-400 animate-ping" : "bg-amber-400 animate-ping"}`}></span>
+                      <span className={`relative inline-flex rounded-full h-2 w-2 ${pineconeCount > 0 ? "bg-emerald-500" : "bg-amber-500"}`}></span>
+                    </span>
+                  </span>
+                )}
+              </div>
             </div>
             {search.trim() === "" && (
-              <div>
+              <div className="text-[11px] font-medium text-dark/50 bg-slate-200/50 px-2 py-0.5 rounded border border-slate-200/60">
                 Showing example ingredient (type to search all)
               </div>
             )}
