@@ -1615,5 +1615,488 @@
         "type": "safe",
         "category": "Food - Acidity Regulator / Stabilizer",
         "profile": "An inorganic salt commonly used as an acidity regulator and stabilizer in baked goods, noodles, and cocoa processing. High safety profile and completely non-toxic."
+    },
+    {
+        "id": "chem_232",
+        "name": "Calcium Propionate",
+        "type": "safe",
+        "category": "Food - Preservative",
+        "profile": "A calcium salt of propionic acid, used to preserve bread and baked goods by inhibiting mold growth. Safe and common in commercial baking."
+    },
+    {
+        "id": "chem_233",
+        "name": "Trisodium Citrate",
+        "type": "safe",
+        "category": "Food - Acidity Regulator / Emulsifier",
+        "profile": "A sodium salt of citric acid. Widely used in cheese products, beverages, and processed foods as an acidity regulator, emulsifier, and flavoring agent. Very safe."
+    },
+    {
+        "id": "chem_234",
+        "name": "Calcium Lactate",
+        "type": "safe",
+        "category": "Food - Firming Agent / Nutrient",
+        "profile": "A safe calcium salt of lactic acid. Used to add calcium to foods and act as a firming agent in canned vegetables and fruits. Also used in molecular gastronomy."
+    },
+    {
+        "id": "chem_235",
+        "name": "Lactic Acid",
+        "type": "safe",
+        "category": "Food - Acidulant / Preservative",
+        "profile": "A naturally occurring organic acid produced by bacterial fermentation of carbohydrates. Common in sourdough, yogurt, pickles, and sauerkraut for flavor and preservation."
+    },
+    {
+        "id": "chem_236",
+        "name": "Potassium Chloride",
+        "type": "moderate",
+        "category": "Food - Salt Substitute / Nutrient",
+        "profile": "Used as a sodium-free salt substitute and potassium supplement. Safe for most people, but high doses can be harmful to individuals with kidney problems or certain heart conditions."
+    },
+    {
+        "id": "chem_237",
+        "name": "Sodium Benzoate",
+        "type": "moderate",
+        "category": "Food/Cosmetics - Preservative",
+        "profile": "A common synthetic preservative used in acidic foods and beverages. Can form benzene, a carcinogen, in the presence of Vitamin C and heat. Moderation recommended."
+    },
+    {
+        "id": "chem_238",
+        "name": "Potassium Sorbate",
+        "type": "safe",
+        "category": "Food - Preservative",
+        "profile": "A natural food preservative used to prevent mold and yeast growth in cheese, baked goods, and wine. Considered very safe and one of the best preservatives available."
+    },
+    {
+        "id": "chem_239",
+        "name": "Xylitol",
+        "type": "toxic",
+        "category": "Food - Sugar Alcohol / Sweetener",
+        "profile": "A natural sugar alcohol used in chewing gum and diabetic foods. Highly toxic to dogs (causing hypoglycemia and liver failure) and can cause digestive upset in humans."
+    },
+    {
+        "id": "chem_240",
+        "name": "Lactoferrin",
+        "type": "safe",
+        "category": "Food - Nutrient / Immune Support",
+        "profile": "A protein found in human milk and dairy products. Used as a functional ingredient in infant formulas and supplements for its antimicrobial and immune-boosting properties."
+    },
+    {
+        "id": "chem_241",
+        "name": "Inulin",
+        "type": "safe",
+        "category": "Food - Dietary Fiber / Prebiotic",
+        "profile": "A natural prebiotic fiber extracted from chicory root. Used to add fiber and a slightly sweet taste to processed foods. Supports gut health."
+    },
+    {
+        "id": "chem_242",
+        "name": "Beta-Carotene",
+        "type": "safe",
+        "category": "Food - Colorant / Nutrient",
+        "profile": "A plant pigment that the body converts into Vitamin A. Used as a natural orange/yellow food colorant and nutritional supplement. Very safe."
+    },
+    {
+        "id": "chem_243",
+        "name": "Alpha-Tocopherol",
+        "type": "safe",
+        "category": "Food - Antioxidant / Nutrient",
+        "profile": "Synthetic form of Vitamin E. Used as an antioxidant to preserve oils and fats in foods and cosmetics. Completely safe."
+    },
+    {
+        "id": "chem_244",
+        "name": "Ascorbic Acid",
+        "type": "safe",
+        "category": "Food - Nutrient / Antioxidant",
+        "profile": "Common name for Vitamin C. A powerful antioxidant used as a preservative and nutritional supplement in countless food products."
+    },
+    {
+        "id": "chem_245",
+        "name": "Lecithin",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "A natural emulsifier derived from soybeans or sunflower seeds. Essential for stabilizing oil and water mixtures in chocolate, baked goods, and salad dressings."
+    },
+    {
+        "id": "chem_246",
+        "name": "Calcium Chloride",
+        "type": "safe",
+        "category": "Food - Firming Agent / Electrolyte",
+        "profile": "Used in pickle making and brewing to add firmness to vegetables and enhance fermentation. Also used as an electrolyte in sports drinks. Safe for consumption."
+    },
+    {
+        "id": "chem_247",
+        "name": "Titanium Dioxide (E171)",
+        "type": "moderate",
+        "category": "Food/Cosmetics - Whitening Agent",
+        "profile": "A synthetic white pigment used to whiten candies, dairy products, and cosmetics. Classified as a possible carcinogen (IARC Group 2B) when inhaled. Its use in food is banned in the EU."
+    },
+    {
+        "id": "chem_248",
+        "name": "Carmine / Cochineal Extract",
+        "type": "moderate",
+        "category": "Food - Natural Colorant",
+        "profile": "A vibrant red pigment derived from crushed cochineal beetles. While natural, it is a major allergen for some individuals, causing severe reactions and anaphylaxis."
+    },
+    {
+        "id": "chem_249",
+        "name": "Turmeric Extract (Curcumin)",
+        "type": "safe",
+        "category": "Food - Natural Colorant / Spice",
+        "profile": "A natural yellow/orange pigment extracted from turmeric root. Widely used in Indian cuisine and food coloring due to its safety and anti-inflammatory properties."
+    },
+    {
+        "id": "chem_250",
+        "name": "Quillaia Extract",
+        "type": "safe",
+        "category": "Food - Natural Foaming Agent",
+        "profile": "A natural foaming agent derived from the bark of the Quillaia tree. Used in root beers and certain soft drinks to create and stabilize foam. Safe for consumption."
+    },
+    {
+        "id": "chem_251",
+        "name": "Citrus Fiber",
+        "type": "safe",
+        "category": "Food - Dietary Fiber / Thickener",
+        "profile": "A plant-based fiber extracted from citrus peels. Used to improve texture, stabilize products, and add fiber to juices and dairy items. Very safe."
+    },
+    {
+        "id": "chem_252",
+        "name": "Gellan Gum",
+        "type": "safe",
+        "category": "Food - Gelling Agent",
+        "profile": "A vegan gelling agent produced by bacterial fermentation. Used in vegan jellies, puddings, and dairy alternatives to create desired texture."
+    },
+    {
+        "id": "chem_253",
+        "name": "Carrageenan",
+        "type": "moderate",
+        "category": "Food - Thickener / Gelling Agent",
+        "profile": "A stabilizer and thickener extracted from red seaweed. Widely used in dairy and dairy-alternative products. Some studies suggest it may cause digestive inflammation in sensitive individuals."
+    },
+    {
+        "id": "chem_254",
+        "name": "Turmeric Oleoresin",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "A natural spice extract derived from turmeric root. Used as a vibrant yellow colorant in curries, mustard, and food products. Contains curcuminoids known for their health benefits."
+    },
+    {
+        "id": "chem_255",
+        "name": "Paprika Extract",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "A vibrant orange-red natural colorant extracted from paprika peppers. Widely used in snacks, sausages, and spice blends. Contains capsaicinoids and carotenoids."
+    },
+    {
+        "id": "chem_256",
+        "name": "Lutein",
+        "type": "safe",
+        "category": "Food - Natural Colorant / Nutrient",
+        "profile": "A natural xanthophyll pigment found in green leafy vegetables and egg yolks. Used as a natural yellow-orange colorant and nutritional supplement for eye health."
+    },
+    {
+        "id": "chem_257",
+        "name": "Annatto",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "A natural food dye derived from the seeds of the achiote tree. Produces yellow-orange-red colors and is used in cheese, butter, and snacks."
+    },
+    {
+        "id": "chem_258",
+        "name": "Cochineal",
+        "type": "moderate",
+        "category": "Food - Natural Colorant",
+        "profile": "A vibrant red dye derived from crushed cochineal beetles. While natural, it can cause allergic reactions in sensitive individuals."
+    },
+    {
+        "id": "chem_259",
+        "name": "Carmine Lake",
+        "type": "moderate",
+        "category": "Food - Natural Colorant",
+        "profile": "A lake pigment made from carmine, used for stable red coloring in cosmetics and foods. Potential allergen for some individuals."
+    },
+    {
+        "id": "chem_260",
+        "name": "Beetroot Red",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "A natural red food coloring derived from beetroot. Used in yogurts, candies, and dairy products. Stable at cool temperatures but sensitive to heat."
+    },
+    {
+        "id": "chem_261",
+        "name": "Anthocyanins",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "Water-soluble pigments found in fruits, berries, and vegetables. Provide red, purple, and blue colors and have antioxidant properties."
+    },
+    {
+        "id": "chem_262",
+        "name": "Black Carrot Extract",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "A natural colorant derived from black carrots. Provides red-purple hues and is used in beverages, candies, and processed foods."
+    },
+    {
+        "id": "chem_263",
+        "name": "Red Cabbage Extract",
+        "type": "safe",
+        "category": "Food - Natural Colorant",
+        "profile": "A natural pH-sensitive pigment extracted from red cabbage. Provides red, purple, or blue hues depending on acidity. Safe for consumption."
+    },
+    {
+        "id": "chem_264",
+        "name": "Rice Starch",
+        "type": "safe",
+        "category": "Food - Thickener / Bulking Agent",
+        "profile": "A natural starch extracted from rice grains. Used as a thickener, binder, and texture enhancer in gluten-free products and baby foods."
+    },
+    {
+        "id": "chem_265",
+        "name": "Potato Starch",
+        "type": "safe",
+        "category": "Food - Thickener / Binder",
+        "profile": "A gluten-free starch extracted from potatoes. Used as a thickening and binding agent in soups, sauces, and baked goods."
+    },
+    {
+        "id": "chem_266",
+        "name": "Tapioca Starch",
+        "type": "safe",
+        "category": "Food - Thickener / Binder",
+        "profile": "A starch extracted from cassava root. Used as a gluten-free thickener and texturizer in baked goods, puddings, and sauces."
+    },
+    {
+        "id": "chem_267",
+        "name": "Corn Starch",
+        "type": "safe",
+        "category": "Food - Thickener / Binder",
+        "profile": "A starch derived from corn kernels. Used widely as a thickening agent, stabilizer, and ingredient in processed foods."
+    },
+    {
+        "id": "chem_268",
+        "name": "Modified Starch",
+        "type": "safe",
+        "category": "Food - Thickener / Stabilizer",
+        "profile": "Starches chemically modified to improve texture, stability, and viscosity. Common in dairy products, snacks, and sauces."
+    },
+    {
+        "id": "chem_269",
+        "name": "Modified Waxy Maize",
+        "type": "safe",
+        "category": "Food - Thickener / Stabilizer",
+        "profile": "A type of corn starch modified to enhance texture and stability. Commonly used in dairy products, sauces, and baby foods."
+    },
+    {
+        "id": "chem_270",
+        "name": "Dextrose",
+        "type": "safe",
+        "category": "Food - Sweetener / Energy Source",
+        "profile": "A simple sugar identical to glucose. Used as a sweetener, energy source, and preservative in beverages, candies, and processed foods."
+    },
+    {
+        "id": "chem_271",
+        "name": "Maltodextrin",
+        "type": "safe",
+        "category": "Food - Bulking Agent",
+        "profile": "A polysaccharide processed from starch. Used as a thickener, bulking agent, and flavor carrier in snacks, beverages, and supplements."
+    },
+    {
+        "id": "chem_272",
+        "name": "Fructose",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "A naturally occurring sugar found in fruits. Used as a sweetener in processed foods. High intake may contribute to health issues."
+    },
+    {
+        "id": "chem_273",
+        "name": "Glucose Syrup",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "A viscous sugar syrup made from starch hydrolysis. Used as a sweetener and preservative in confectionery, baked goods, and jams."
+    },
+    {
+        "id": "chem_274",
+        "name": "Glucose-Fructose Syrup",
+        "type": "moderate",
+        "category": "Food - Sweetener",
+        "profile": "A sweetener blend of glucose and fructose. Used widely in soft drinks and processed foods. Linked to increased risks of obesity and type 2 diabetes."
+    },
+    {
+        "id": "chem_275",
+        "name": "Invert Sugar Syrup",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "A syrup made by hydrolyzing sucrose into glucose and fructose. Used as a sweetener and humectant in confectionery and baked goods."
+    },
+    {
+        "id": "chem_276",
+        "name": "Yeast Extract",
+        "type": "safe",
+        "category": "Food - Flavor Enhancer",
+        "profile": "A natural flavor enhancer derived from yeast cells, containing naturally occurring glutamates. Used to add rich umami flavor to savory foods, snacks, and soups."
+    },
+    {
+        "id": "chem_277",
+        "name": "MSG (Monosodium Glutamate)",
+        "type": "moderate",
+        "category": "Food - Flavor Enhancer",
+        "profile": "A common flavor enhancer that adds savory (umami) taste. While generally safe for most, some individuals report sensitivity, experiencing symptoms like headache and flushing."
+    },
+    {
+        "id": "chem_278",
+        "name": "Malt Extract",
+        "type": "safe",
+        "category": "Food - Flavoring / Maltose Source",
+        "profile": "A viscous syrup extracted from malted barley. Used as a natural sweetener, flavoring agent, and source of maltose in baked goods, malt drinks, and cereals."
+    },
+    {
+        "id": "chem_279",
+        "name": "L-Lysine Monohydrochloride",
+        "type": "safe",
+        "category": "Food - Nutrient / Flavor Enhancer",
+        "profile": "An essential amino acid supplement used to enhance flavor (especially in combination with MSG) and as a nutritional supplement in foods and supplements."
+    },
+    {
+        "id": "chem_280",
+        "name": "Lecithin Powder",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "A natural emulsifier derived from soybeans or sunflower seeds. Used to blend fats and water in processed foods, imparting a smooth texture."
+    },
+    {
+        "id": "chem_281",
+        "name": "Ammonium Carbonate",
+        "type": "safe",
+        "category": "Food - Leavening Agent",
+        "profile": "A leavening agent used in baking, especially in crackers and cookies. Releases carbon dioxide when heated, providing lift. Considered safe in food quantities."
+    },
+    {
+        "id": "chem_282",
+        "name": "Almond Powder",
+        "type": "safe",
+        "category": "Food - Flavor / Nutrition",
+        "profile": "Finely ground almonds used to add nutty flavor, texture, and nutritional value to baked goods, sauces, and dairy products."
+    },
+    {
+        "id": "chem_283",
+        "name": "Modified Food Starch",
+        "type": "safe",
+        "category": "Food - Thickener / Stabilizer",
+        "profile": "Corn or potato starch chemically modified to improve texture, stability, and viscosity. Commonly used in dairy products, sauces, and processed foods."
+    },
+    {
+        "id": "chem_284",
+        "name": "Sorbitol",
+        "type": "safe",
+        "category": "Food - Sugar Alcohol / Sweetener",
+        "profile": "A sugar alcohol sweetener used in sugar-free candies, chewing gum, and diabetic foods. Safe in moderation, but can cause digestive issues (gas, bloating) in large amounts."
+    },
+    {
+        "id": "chem_285",
+        "name": "Sodium Stearoyl Lactylate (SSL)",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "A common emulsifier and dough conditioner used in baked goods, whipped toppings, and processed potato products. Generally recognized as safe (GRAS)."
+    },
+    {
+        "id": "chem_286",
+        "name": "Dicalcium Phosphate (E341ii)",
+        "type": "safe",
+        "category": "Food - Nutrient / Leavening Agent",
+        "profile": "A calcium salt used as a nutritional supplement (calcium source), baking powder component, and dough stabilizer. Safe for consumption."
+    },
+    {
+        "id": "chem_287",
+        "name": "Mono- and Diglycerides of Fatty Acids",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "Fat-derived emulsifiers used in baked goods, margarine, and ice cream to stabilize texture and prevent separation. Very safe and naturally occurring."
+    },
+    {
+        "id": "chem_288",
+        "name": "Soya Protein Isolate",
+        "type": "safe",
+        "category": "Food - Nutrient / Texture Agent",
+        "profile": "A concentrated protein derived from soybeans. Used as a protein supplement and texturizer in processed meats, baked goods, and dairy alternatives."
+    },
+    {
+        "id": "chem_289",
+        "name": "Wheat Fibre",
+        "type": "safe",
+        "category": "Food - Dietary Fiber",
+        "profile": "Plant-based fiber extracted from wheat. Used to increase fiber content in baked goods, snacks, and breakfast cereals. Safe for most individuals."
+    },
+    {
+        "id": "chem_290",
+        "name": "Cocoa Solids",
+        "type": "safe",
+        "category": "Food - Flavor / Antioxidant",
+        "profile": "Derived from roasted cocoa beans, cocoa solids provide chocolate flavor and are rich in antioxidants called flavonoids. Considered safe and healthy in moderation."
+    },
+    {
+        "id": "chem_291",
+        "name": "Sesame Powder",
+        "type": "safe",
+        "category": "Food - Flavor / Nutrient",
+        "profile": "Ground sesame seeds used to add nutty flavor and texture to snacks, baked goods, and toppings. Contains healthy fats and minerals."
+    },
+    {
+        "id": "chem_292",
+        "name": "Milk Solids Non Fat (MSNF)",
+        "type": "safe",
+        "category": "Food - Nutrient / Texture Agent",
+        "profile": "Skim milk powder used to add protein, calcium, and texture to processed foods like baked goods, dairy products, and sauces."
+    },
+    {
+        "id": "chem_293",
+        "name": "Hydrogenated Vegetable Oil",
+        "type": "moderate",
+        "category": "Food - Fat / Texture Agent",
+        "profile": "Vegetable oils chemically altered to be solid at room temperature. May contain trans fats, which are linked to heart disease. Partially hydrogenated oils are being phased out globally."
+    },
+    {
+        "id": "chem_294",
+        "name": "Interesterified Fat",
+        "type": "safe",
+        "category": "Food - Fat / Texture Agent",
+        "profile": "Fats created by rearranging fatty acids of different oils. Used to modify texture and melting properties in processed foods. Considered a healthier alternative to trans fats."
+    },
+    {
+        "id": "chem_295",
+        "name": "Shortening",
+        "type": "moderate",
+        "category": "Food - Fat / Texture Agent",
+        "profile": "Usually hydrogenated vegetable oil used for baking. May contain trans fats depending on the type. Check label for \"partially hydrogenated\" oils."
+    },
+    {
+        "id": "chem_296",
+        "name": "Edible Common Salt",
+        "type": "moderate",
+        "category": "Food - Flavor / Additive",
+        "profile": "Common salt (sodium chloride), essential nutrient but high intake is linked to blood pressure issues and cardiovascular risks."
+    },
+    {
+        "id": "chem_297",
+        "name": "Sodium Ascorbate",
+        "type": "safe",
+        "category": "Food - Nutrient / Antioxidant",
+        "profile": "Salt form of Vitamin C. Used as an antioxidant and preservative. Safe for consumption and can help extend shelf life of products."
+    },
+    {
+        "id": "chem_298",
+        "name": "Soy Lecithin",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "A widely used emulsifier derived from soybeans. It helps stabilize food products, blending fats and water, and is common in chocolate, salad dressings, and baked goods. Very safe."
+    },
+    {
+        "id": "chem_299",
+        "name": "L-Theanine",
+        "type": "safe",
+        "category": "Food - Nutrient / Amino Acid",
+        "profile": "An amino acid found primarily in tea leaves, known for its calming and focus-enhancing effects without drowsiness. Used in beverages, supplements, and some functional foods."
+    },
+    {
+        "id": "chem_300",
+        "name": "Modified Tapioca Starch",
+        "type": "safe",
+        "category": "Food - Thickener",
+        "profile": "A starch derived from cassava root that has been chemically modified to improve texture, stability, and viscosity. Commonly used in sauces, soups, and baked goods."
     }
 ]

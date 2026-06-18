@@ -16,54 +16,83 @@ def clean_chemical_name(name: str) -> str:
     name = re.sub(r'[^a-zA-Z0-9\s]', ' ', name)
     return ' '.join(name.split()).lower()
 
-def verify_match_similarity_raw(scanned_clean: str, matched_clean: str) -> bool:
-    # 1. Direct substring check (if the matched clean name is entirely contained in the scanned name)
-    if matched_clean in scanned_clean:
-        return True
+def calculate_match_score_raw(scanned_clean: str, matched_clean: str) -> float:
+    # 1. Direct substring check (ignoring spaces)
+    scanned_nospace = scanned_clean.replace(" ", "")
+    matched_nospace = matched_clean.replace(" ", "")
+    if matched_nospace and matched_nospace in scanned_nospace:
+        return 0.98
         
-    # 2. Split into words
     s_words = scanned_clean.split()
     m_words = matched_clean.split()
     
     if not s_words or not m_words:
-        return False
+        return 0.0
         
-    # 3. Word-level subset check: how many words of the matched name are found in the scanned name?
-    matches = 0
-    for w_m in m_words:
-        word_found = False
-        for w_s in s_words:
-            # Check for exact word or very close typo match (e.g., "cabbonate" vs "carbonate")
-            if w_m == w_s or difflib.SequenceMatcher(None, w_m, w_s).ratio() >= 0.70:
-                word_found = True
-                break
-        if word_found:
-            matches += 1
-            
-    word_ratio = matches / len(m_words)
+    STOP_WORDS = {"and", "of", "in", "for", "with", "to", "or", "a", "an", "the"}
     
-    # If all (or at least 85% of) the matched words are present in the scanned text, accept it.
-    if word_ratio >= 0.85:
-        return True
+    word_scores = []
+    for w_m in m_words:
+        best_word_score = 0.0
+        for w_s in s_words:
+            if w_m == w_s:
+                best_word_score = 1.0
+                break
+            
+            # Check for substring (min length 3 to allow "soy" in "soya")
+            is_sub = (w_s in w_m and len(w_s) >= 3) or (w_m in w_s and len(w_m) >= 3)
+            ratio = difflib.SequenceMatcher(None, w_m, w_s).ratio()
+            
+            if is_sub:
+                word_score = max(ratio, 0.85)
+            else:
+                # If length is 3 or less and not a substring, require exact match (prevents SLS false matching SLES or random OCR noise)
+                if len(w_m) <= 3:
+                    word_score = 0.0
+                else:
+                    word_score = ratio
+                
+            if word_score > best_word_score:
+                best_word_score = word_score
+                
+        # If a non-stop-word key term is completely missing (score < 0.72), fail the match
+        if w_m not in STOP_WORDS and best_word_score < 0.72:
+            return 0.0
+            
+        word_scores.append(best_word_score)
         
-    # 4. Fallback: Check overall sequence similarity ratio (must be very high if word-subset is not satisfied)
-    ratio = difflib.SequenceMatcher(None, scanned_clean, matched_clean).ratio()
-    return ratio >= 0.85
+    avg_word_score = sum(word_scores) / len(word_scores)
 
-def verify_match_similarity(scanned: str, matched: str) -> bool:
+    return avg_word_score
+
+
+
+def calculate_match_score(scanned: str, matched: str) -> float:
     scanned_clean = clean_chemical_name(scanned)
     
     # A. Check direct matches against contents inside parentheses first
+    max_score = 0.0
     parenthesis_contents = re.findall(r'\((.*?)\)', matched)
     for content in parenthesis_contents:
         content_clean = clean_chemical_name(content)
-        if content_clean and verify_match_similarity_raw(scanned_clean, content_clean):
-            return True
-            
+        if content_clean:
+            score = calculate_match_score_raw(scanned_clean, content_clean)
+            if score > max_score:
+                max_score = score
+                
     # B. Also check the base name without parentheses
     matched_no_parens = re.sub(r'\(.*?\)', '', matched)
     matched_clean = clean_chemical_name(matched_no_parens)
-    return verify_match_similarity_raw(scanned_clean, matched_clean)
+    score = calculate_match_score_raw(scanned_clean, matched_clean)
+    if score > max_score:
+        max_score = score
+        
+    return max_score
+
+def verify_match_similarity(scanned: str, matched: str) -> bool:
+    # We require a robust similarity score to pass validation
+    return calculate_match_score(scanned, matched) >= 0.82
+
 
 # Load dataset once into memory for local fallback searches
 local_dataset = []
@@ -74,28 +103,20 @@ except Exception as e:
     print(f"Error loading ingredients_dataset.json for local search: {e}")
 
 def find_local_fuzzy_match(scanned_name: str):
-    scanned_clean = clean_chemical_name(scanned_name)
     best_match = None
-    best_ratio = 0
+    best_score = 0.0
     
     for item in local_dataset:
         matched_name = item["name"]
-        matched_clean = clean_chemical_name(matched_name)
-        
-        # Calculate character similarity
-        ratio = difflib.SequenceMatcher(None, scanned_clean, matched_clean).ratio()
-        
-        # Check if matched clean is a substring of scanned clean
-        if matched_clean in scanned_clean:
-            ratio = max(ratio, 0.95)
-            
-        if ratio > best_ratio:
-            best_ratio = ratio
+        score = calculate_match_score(scanned_name, matched_name)
+        if score > best_score:
+            best_score = score
             best_match = item
             
-    if best_ratio >= 0.70:  # Standard fuzzy threshold
-        return best_match, best_ratio
+    if best_score >= 0.82:  # Robust fuzzy threshold matching the vector similarity check
+        return best_match, best_score
     return None, 0
+
 
 # 1. Boot up secrets and core engines
 load_dotenv()
@@ -192,13 +213,15 @@ def analyze_ingredients(request: IngredientRequest):
 
             query_response = index.query(
                 vector=vector_embedding,
-                top_k=3,
+                top_k=5,
                 include_metadata=True
             )
 
             matches = query_response.get("matches", [])
             
             matched_successfully = False
+            valid_candidates = []
+            
             for match in matches:
                 score = match.get("score", 0)
 
@@ -209,26 +232,36 @@ def analyze_ingredients(request: IngredientRequest):
                     
                     # Prevent false positive vector matches by verifying character/word similarity
                     if verify_match_similarity(ingredient, matched_name):
-                        db_type = metadata.get("type", "").lower()
-                        
-                        payload = {
-                            "ingredient": ingredient,
-                            "matched_as": matched_name,
-                            "category": metadata.get("category"),
-                            "profile": metadata.get("profile"),
-                            "match_confidence": f"{round(score * 100, 2)}%"
-                        }
+                        match_score = calculate_match_score(ingredient, matched_name)
+                        valid_candidates.append((match_score, match))
+            
+            if valid_candidates:
+                # Sort candidates by similarity score descending
+                valid_candidates.sort(key=lambda x: x[0], reverse=True)
+                best_score, best_match = valid_candidates[0]
+                
+                metadata = best_match["metadata"]
+                matched_name = metadata.get("name", "")
+                db_type = metadata.get("type", "").lower()
+                
+                payload = {
+                    "ingredient": ingredient,
+                    "matched_as": matched_name,
+                    "category": metadata.get("category"),
+                    "profile": metadata.get("profile"),
+                    "match_confidence": f"{round(best_score * 100, 2)}%"
+                }
 
-                        # Route the data to its respective bucket based on the dataset tag
-                        if db_type == "toxic":
-                            flagged_hazards.append(payload)
-                        elif db_type == "moderate":
-                            moderate_additives.append(payload)
-                        elif db_type == "safe":
-                            verified_safe_items.append(payload)
-                        
-                        matched_successfully = True
-                        break
+                # Route the data to its respective bucket based on the dataset tag
+                if db_type == "toxic":
+                    flagged_hazards.append(payload)
+                elif db_type == "moderate":
+                    moderate_additives.append(payload)
+                elif db_type == "safe":
+                    verified_safe_items.append(payload)
+                
+                matched_successfully = True
+
 
             # Local Fallback Search (executed if Pinecone failed to find a valid match due to severe typos)
             if not matched_successfully:

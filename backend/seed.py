@@ -37,13 +37,23 @@ with open(dataset_path, "r", encoding="utf-8") as file:
 
 print(f"🧠 Processing {len(food_additives)} cross-category chemical profiles...")
 
-# 5. Run the upload execution loop exactly like your old vector step
+# 5. Batch check existing IDs to speed up check times dramatically (3 calls instead of 298)
+print("🔍 Checking which ingredients are already seeded in the cloud...")
+all_ids = [item["id"] for item in food_additives]
+existing_vectors = set()
+
+for i in range(0, len(all_ids), 100):
+    batch_ids = all_ids[i:i+100]
+    fetch_res = index.fetch(ids=batch_ids)
+    if fetch_res and fetch_res.get("vectors"):
+        existing_vectors.update(fetch_res["vectors"].keys())
+
 for item in food_additives:
-    # Check if the ingredient ID already exists in the Pinecone index to skip re-uploading
-    fetch_res = index.fetch(ids=[item["id"]])
-    if fetch_res and fetch_res.get("vectors") and item["id"] in fetch_res["vectors"]:
+    # Skip if the ingredient ID is already in the fetched set
+    if item["id"] in existing_vectors:
         print(f"⏭️ Already in cloud (skipping): {item['name']}")
         continue
+
 
     print(f"➡️ Transforming and syncing to cloud: {item['name']}")
 
