@@ -10,6 +10,9 @@ from typing import List, Dict
 import json
 import re
 import difflib
+import google.generativeai as genai
+import base64
+import uuid
 
 # 1.5 Helper functions for string similarity validation (prevents false positive vector matches)
 def clean_chemical_name(name: str) -> str:
@@ -121,6 +124,9 @@ def find_local_fuzzy_match(scanned_name: str):
 # 1. Boot up secrets and core engines
 load_dotenv()
 
+if os.getenv("GEMINI_API_KEY"):
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 app = FastAPI(title="LabelSpy AI Backend Engine")
 
 # Configure CORS so your React frontend can talk to this server securely
@@ -152,6 +158,9 @@ hf_router_client = OpenAI(
 class IngredientRequest(BaseModel):
     text: str
 
+class VisionRequest(BaseModel):
+    image_data: str
+
 # 3. Base Health-Check Route
 @app.get("/")
 def home():
@@ -178,12 +187,141 @@ def get_database_stats():
         # Fallback to 0 if Pinecone fails or index is not initialized yet
         return {"total_vectors": 0, "error": str(e)}
 
+# 3.7 AI Vision Extraction Route
+@app.post("/extract-vision")
+def extract_vision(request: VisionRequest):
+    try:
+        if not os.getenv("GEMINI_API_KEY"):
+            raise HTTPException(status_code=500, detail="Gemini API Key is not configured in .env")
+
+        # Split base64 image data string into header and data parts
+        header, b64data = request.image_data.split(",", 1)
+        mime_type = header.split(":")[1].split(";")[0]
+
+        model = genai.GenerativeModel("gemini-3.1-flash-lite")
+        response = model.generate_content([
+            """You are a master forensic label reader. Extract the exact ingredient list from this product label image.
+RULES:
+1. Return ONLY a single comma-separated string. No markdown, no intro text, no bullet points.
+2. Remove all percentages (e.g., '10%'), marketing fluff ('100% Natural', 'No Added Sugar'), and trailing punctuation.
+3. If the label is not in English, silently translate the ingredients to their standard English chemical or common names.
+4. IMPORTANT: Keep E-numbers, INS codes, and sub-ingredients grouped WITH their parent ingredient. Do NOT separate them into new items. Example: 'Raising Agents [503 (ii), 500]', 'Emulsifier (472e)' -> 'Raising Agents 503 500', 'Emulsifier 472e'.
+5. Ignore nutritional tables, distributor addresses, and allergy warnings (e.g. 'Contains milk').""",
+            {
+                "mime_type": mime_type,
+                "data": base64.b64decode(b64data)
+            }
+        ])
+        
+        extracted_text = response.text.strip()
+        return {"extracted_text": extracted_text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+def smart_split_ingredients(text: str) -> List[str]:
+    result = []
+    current = []
+    depth = 0
+    for char in text:
+        if char in '([{':
+            depth += 1
+        elif char in ')]}':
+            depth -= 1
+        
+        if char == ',' and depth <= 0:
+            result.append(''.join(current).strip())
+            current = []
+        else:
+            current.append(char)
+            
+    if current:
+        result.append(''.join(current).strip())
+    return result
+
+def auto_research_and_save_ingredient(ingredient_name: str) -> dict:
+    try:
+        model = genai.GenerativeModel("gemini-3.1-flash-lite")
+        prompt = f"""You are a chemical safety expert. A user scanned an ingredient label and found the following unlisted ingredient: '{ingredient_name}'. 
+Analyze this ingredient and return a strict JSON object with EXACTLY the following keys:
+{{
+  "name": "Standardized/Corrected name of the ingredient",
+  "type": "toxic", "moderate", or "safe",
+  "category": "e.g., Food - Preservative, Cosmetic - Emollient",
+  "profile": "A brief 1-2 sentence description of its purpose and any health/safety impacts."
+}}
+Ensure the output is ONLY valid JSON, without any markdown formatting."""
+
+        response = model.generate_content(prompt)
+        raw_text = response.text.strip()
+        
+        if raw_text.startswith("```json"):
+            raw_text = raw_text[7:]
+        if raw_text.endswith("```"):
+            raw_text = raw_text[:-3]
+        raw_text = raw_text.strip()
+        
+        parsed_data = json.loads(raw_text)
+        
+        # 1. Update the local JSON file to get the next ID
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        dataset_path = os.path.join(script_dir, "ingredients_dataset.json")
+        
+        dataset = []
+        if os.path.exists(dataset_path):
+            with open(dataset_path, "r", encoding="utf-8") as file:
+                dataset = json.load(file)
+                
+        # Generate sequential ID like chem_301
+        next_id_num = len(dataset) + 1
+        new_id = f"chem_{next_id_num:03d}"
+        
+        # Reconstruct the dictionary to enforce strict key order (id first)
+        data = {
+            "id": new_id,
+            "name": parsed_data.get("name", ingredient_name),
+            "type": parsed_data.get("type", "safe"),
+            "category": parsed_data.get("category", "Unknown"),
+            "profile": parsed_data.get("profile", "No description available.")
+        }
+        
+        dataset.append(data)
+        with open(dataset_path, "w", encoding="utf-8") as file:
+            json.dump(dataset, file, indent=4)
+                
+        # 2. Update Pinecone
+        combined_text = f"Ingredient Name: {data['name']}. Description: {data['profile']}"
+        raw_embedding = hf_client.feature_extraction(
+            text=combined_text,
+            model="sentence-transformers/all-MiniLM-L6-v2"
+        )
+        vector_embedding = [float(x) for x in raw_embedding]
+        
+        index.upsert(
+            vectors=[
+                {
+                    "id": data["id"],
+                    "values": vector_embedding,
+                    "metadata": {
+                        "name": data["name"],
+                        "type": data["type"],
+                        "category": data["category"],
+                        "profile": data["profile"]
+                    }
+                }
+            ]
+        )
+        
+        return data
+    except Exception as e:
+        print(f"Auto-research failed for {ingredient_name}: {e}")
+        return None
+
 # 4. The Upgraded 3-Tag Master Query Route
 @app.post("/analyze")
 def analyze_ingredients(request: IngredientRequest):
     try:
-        # Step A: Split raw text by commas
-        raw_list = request.text.split(",")
+        # Step A: Split raw text by commas, respecting brackets
+        raw_list = smart_split_ingredients(request.text)
         
         # Step B: Trim spaces and remove duplicate entries
         seen = set()
@@ -288,8 +426,30 @@ def analyze_ingredients(request: IngredientRequest):
                     matched_successfully = True
 
             if not matched_successfully:
-                # If no matches passed the similarity guard and local fuzzy search failed, it is unlisted
-                unlisted_ingredients.append(ingredient)
+                # Auto-research unknown ingredients dynamically
+                new_data = auto_research_and_save_ingredient(ingredient)
+                if new_data:
+                    db_type = new_data.get("type", "").lower()
+                    
+                    payload = {
+                        "ingredient": ingredient,
+                        "matched_as": new_data.get("name"),
+                        "category": new_data.get("category"),
+                        "profile": new_data.get("profile"),
+                        "match_confidence": "Auto-Researched (AI)"
+                    }
+
+                    if db_type == "toxic":
+                        flagged_hazards.append(payload)
+                    elif db_type == "moderate":
+                        moderate_additives.append(payload)
+                    elif db_type == "safe":
+                        verified_safe_items.append(payload)
+                    else:
+                        unlisted_ingredients.append(ingredient)
+                else:
+                    # If AI research fails or errors out, fallback to unlisted
+                    unlisted_ingredients.append(ingredient)
 
         # Return the structural breakdown payload back to React
         return {

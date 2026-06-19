@@ -35,3 +35,26 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }
+
+/* Custom Animations */
+@keyframes laser-scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(300px); opacity: 0; }
+}
+
+.animate-laser {
+  animation: laser-scan 2s ease-in-out infinite;
+}
+
+/* Premium Gradient Flow */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 1.5s linear infinite;
+}

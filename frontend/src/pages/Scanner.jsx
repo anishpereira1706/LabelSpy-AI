@@ -241,6 +241,7 @@ export default function Scanner() {
   const [error, setError] = useState("");
   const [scannedIngredients, setScannedIngredients] = useState([]);
   const [ocrProgress, setOcrProgress] = useState(""); // Tracks OCR percentage updates
+  const [scanMode, setScanMode] = useState("local"); // Tracks OCR vs AI mode
   const reportRef = useRef(null);
 
   useEffect(() => {
@@ -346,44 +347,77 @@ export default function Scanner() {
     const file = e.target.files[0];
     if (!file) return;
 
+    // Reset the input value so the same file can be uploaded consecutively
+    e.target.value = "";
+
     setLoading(true);
     setError("");
+    setResult(null);
+    setIngredientText("");
     setOcrProgress("Enhancing label contrast...");
 
     try {
-      // 1. Process image automatically to darken text and filter background shadows
-      const enhancedImageDataUrl = await preprocessImage(file);
-
-      setOcrProgress("Initializing scanner pipeline...");
-
-      Tesseract.recognize(
-        enhancedImageDataUrl,
-        "eng", // Extract English alphabet characters
-        {
-          logger: (m) => {
-            if (m.status === "recognizing text") {
-              setOcrProgress(`Reading Label Image: ${Math.round(m.progress * 100)}%`);
-            }
-          },
-        }
-      )
-        .then(({ data: { text } }) => {
-          if (!text.trim()) {
-            throw new Error("Could not detect legible characters in image. Try a clearer angle.");
-          }
-
-          // ✨ Filter raw OCR blocks into clean comma-separated lists automatically
-          const parsedIngredients = cleanAndExtractIngredients(text);
-
-          setIngredientText(parsedIngredients); // Pushes the cleaned data string right into your input box
-          setOcrProgress("");
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message || "OCR Engine failed to read image file.");
-          setOcrProgress("");
-          setLoading(false);
+      if (scanMode === "ai") {
+        setOcrProgress("Enhancing label contrast...");
+        const enhancedImageDataUrl = await preprocessImage(file);
+        
+        setOcrProgress("Uploading to Deep AI Engine...");
+        const response = await fetch(`${API_BASE_URL}/extract-vision`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image_data: enhancedImageDataUrl }),
         });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.detail || "AI Extraction failed.");
+        }
+        
+        const data = await response.json();
+        setIngredientText(data.extracted_text);
+        
+        await new Promise(r => setTimeout(r, 1500));
+        setOcrProgress("");
+        setLoading(false);
+
+      } else {
+        setOcrProgress("Enhancing label contrast...");
+        const enhancedImageDataUrl = await preprocessImage(file);
+
+        setOcrProgress("Initializing scanner pipeline...");
+
+        Tesseract.recognize(
+          enhancedImageDataUrl,
+          "eng", // Extract English alphabet characters
+          {
+            logger: (m) => {
+              if (m.status === "recognizing text") {
+                setOcrProgress(`Reading Label Image: ${Math.round(m.progress * 100)}%`);
+              }
+            },
+          }
+        )
+          .then(({ data: { text } }) => {
+            if (!text.trim()) {
+              throw new Error("Could not detect legible characters in image. Try a clearer angle.");
+            }
+
+            // ✨ Filter raw OCR blocks into clean comma-separated lists automatically
+            const parsedIngredients = cleanAndExtractIngredients(text);
+
+            setIngredientText(parsedIngredients); // Pushes the cleaned data string right into your input box
+            
+            setTimeout(() => {
+              setOcrProgress("");
+              setLoading(false);
+            }, 1500);
+          })
+          .catch((err) => {
+            setError(err.message || "OCR Engine failed to read image file.");
+            setOcrProgress("");
+            setLoading(false);
+          });
+      }
     } catch (err) {
       setError(err.message || "Image preprocessing failed.");
       setLoading(false);
@@ -422,7 +456,9 @@ export default function Scanner() {
     } catch (err) {
       setError(err.message || "An unexpected error occurred.");
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
     }
   };
 
@@ -454,10 +490,38 @@ export default function Scanner() {
         {/* Left Column: File Uploader */}
         <div className="bg-gradient-to-br from-accent/5 via-primary to-primary border border-secondary rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-accent/30 transition-all duration-300">
           <div>
-            <h3 className="text-sm font-extrabold text-dark mb-4 flex items-center gap-2">
-              <span className="w-1.5 h-3 rounded-full bg-accent"></span>
-              Label Scanner
-            </h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-sm font-extrabold text-dark flex items-center gap-2">
+                <span className="w-1.5 h-3 rounded-full bg-accent"></span>
+                Label Scanner
+              </h3>
+              
+              {/* Scan Mode Toggle */}
+              <div className="bg-secondary/50 p-1 rounded-lg flex items-center gap-1 border border-secondary">
+                <button
+                  type="button"
+                  onClick={() => setScanMode("local")}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
+                    scanMode === "local" 
+                      ? "bg-white text-dark shadow-sm" 
+                      : "text-dark/50 hover:text-dark/80 hover:bg-white/50"
+                  }`}
+                >
+                  Default
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScanMode("ai")}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
+                    scanMode === "ai" 
+                      ? "bg-accent text-primary shadow-sm" 
+                      : "text-dark/50 hover:text-dark/80 hover:bg-white/50"
+                  }`}
+                >
+                  Use AI
+                </button>
+              </div>
+            </div>
             
             <div
               className={`group relative flex flex-col items-center justify-center border-2 border-dashed border-accent/30 hover:border-accent rounded-xl p-8 bg-primary/40 hover:bg-accent/[0.03] transition-all text-center cursor-pointer overflow-hidden ${
@@ -482,11 +546,12 @@ export default function Scanner() {
                 {ocrProgress ? ocrProgress : "Click to select or upload an ingredient label photo"}
               </p>
               
-              {/* Custom Scanning Bar Animation */}
+              {/* Custom Laser Scan Animation */}
               {loading && ocrProgress && (
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-secondary overflow-hidden">
-                  <div className="h-full bg-accent animate-slide-progress w-1/3"></div>
-                </div>
+                <>
+                  <div className="absolute inset-0 bg-accent/5 pointer-events-none"></div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-accent shadow-[0_0_15px_3px_rgba(79,70,229,0.6)] animate-laser pointer-events-none z-10"></div>
+                </>
               )}
             </div>
           </div>
@@ -525,7 +590,11 @@ export default function Scanner() {
             <button
               type="submit"
               disabled={loading || !ingredientText.trim()}
-              className="w-full px-6 py-3.5 bg-accent hover:bg-accent/90 disabled:bg-secondary disabled:text-dark/40 disabled:cursor-not-allowed text-primary font-bold rounded-xl transition-all shadow-md hover:shadow-lg hover:shadow-accent/15 flex items-center justify-center gap-2 mt-4"
+              className={`w-full px-6 py-3.5 text-primary font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 mt-4 disabled:cursor-not-allowed ${
+                loading && !ocrProgress 
+                  ? 'bg-gradient-to-r from-accent via-purple-500 to-accent animate-gradient-x shadow-[0_0_20px_rgba(79,70,229,0.4)] scale-[0.98]' 
+                  : 'bg-accent hover:bg-accent/90 disabled:bg-secondary disabled:text-dark/40 hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5'
+              }`}
             >
               {loading && !ocrProgress ? (
                 <span className="flex items-center gap-2">

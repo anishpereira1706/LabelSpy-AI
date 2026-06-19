@@ -144,7 +144,7 @@
         "name": "Ajinomoto (Monosodium Glutamate)",
         "type": "moderate",
         "category": "Food - Flavor Enhancer",
-        "profile": "Ubiquitous in Indo-Chinese fast food and packaged soups. Overconsumption leads to 'Chinese Restaurant Syndrome'—headaches, sweating, and chest pain in sensitive individuals."
+        "profile": "Ubiquitous in Indo-Chinese fast food and packaged soups. Overconsumption leads to 'Chinese Restaurant Syndrome'\u2014headaches, sweating, and chest pain in sensitive individuals."
     },
     {
         "id": "chem_022",
@@ -2098,5 +2098,152 @@
         "type": "safe",
         "category": "Food - Thickener",
         "profile": "A starch derived from cassava root that has been chemically modified to improve texture, stability, and viscosity. Commonly used in sauces, soups, and baked goods."
+    },
+    {
+        "id": "chem_301",
+        "name": "D-Glucose",
+        "type": "safe",
+        "category": "Food - Sweetener/Humectant",
+        "profile": "D-Glucose is a simple sugar and essential monosaccharide used as a sweetener or humectant; it is generally recognized as safe for consumption and topical application."
+    },
+    {
+        "id": "chem_302",
+        "name": "Fructose",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "Levulose is another name for fructose, a naturally occurring monosaccharide found in fruits and honey used as a sweetening agent. It is generally recognized as safe for consumption, though excessive intake is associated with metabolic health concerns."
+    },
+    {
+        "id": "chem_303",
+        "name": "Wheat Flour",
+        "type": "safe",
+        "category": "Food - Ingredient",
+        "profile": "A common food ingredient used as a thickening agent, binder, or bulk filler. It is safe for the general population but contains gluten, posing a health risk to individuals with celiac disease or gluten sensitivity."
+    },
+    {
+        "id": "chem_304",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Flavor Enhancer/Preservative",
+        "profile": "Sodium chloride is a common mineral used as a flavor enhancer and preservative. While generally recognized as safe, excessive consumption can contribute to hypertension and cardiovascular issues in some individuals."
+    },
+    {
+        "id": "chem_305",
+        "name": "Hydrolyzed Peanut Protein",
+        "type": "moderate",
+        "category": "Cosmetic - Skin Conditioning Agent / Food - Additive",
+        "profile": "This ingredient is derived from peanuts and is used to condition skin and hair or enhance food texture. It poses a significant safety risk for individuals with peanut allergies, as it can trigger severe allergic reactions."
+    },
+    {
+        "id": "chem_306",
+        "name": "Onion Powder",
+        "type": "safe",
+        "category": "Food - Flavoring Agent",
+        "profile": "Onion powder is a dehydrated, ground onion used as a culinary seasoning. It is generally recognized as safe for human consumption, though it can be toxic to certain pets such as dogs and cats."
+    },
+    {
+        "id": "chem_307",
+        "name": "Spices",
+        "type": "safe",
+        "category": "Food - Flavoring Agent",
+        "profile": "A collective term for dried plant parts used to season food, generally recognized as safe (GRAS) by the FDA, though they may trigger allergic reactions in sensitive individuals."
+    },
+    {
+        "id": "chem_308",
+        "name": "Chili Powder",
+        "type": "safe",
+        "category": "Food - Spice",
+        "profile": "A blend of ground dried chili peppers and other spices used as a culinary seasoning. It is generally safe for consumption, though it can cause irritation to the eyes, skin, or gastrointestinal tract in sensitive individuals."
+    },
+    {
+        "id": "chem_309",
+        "name": "Curcuma longa (Turmeric)",
+        "type": "safe",
+        "category": "Food - Spice / Colorant",
+        "profile": "Turmeric is a natural spice primarily used as a culinary flavoring and yellow food coloring agent. It is generally recognized as safe (GRAS) for consumption and is known for its potential anti-inflammatory and antioxidant properties."
+    },
+    {
+        "id": "chem_310",
+        "name": "Garlic Powder",
+        "type": "safe",
+        "category": "Food - Flavoring Agent",
+        "profile": "Garlic powder is a dehydrated, ground form of Allium sativum used as a seasoning. It is generally recognized as safe for human consumption, though it may trigger digestive discomfort in sensitive individuals or those with irritable bowel syndrome."
+    },
+    {
+        "id": "chem_311",
+        "name": "Sodium Bicarbonate",
+        "type": "safe",
+        "category": "Food - Leavening Agent/pH Adjuster",
+        "profile": "Sodium bicarbonate is a common mineral compound used as a leavening agent in baking and as an antacid. It is generally recognized as safe for consumption and topical use, though excessive ingestion may cause electrolyte imbalance."
+    },
+    {
+        "id": "chem_312",
+        "name": "Ingredients (Label Heading)",
+        "type": "safe",
+        "category": "Labeling - Informational",
+        "profile": "The term 'INGRED ENTS' is a typographical error for 'INGREDIENTS', which is a mandatory header used to list the components of a product. It is not a chemical substance and carries no health or safety risk."
+    },
+    {
+        "id": "chem_313",
+        "name": "Corn Meal",
+        "type": "safe",
+        "category": "Food - Ingredient",
+        "profile": "Corn meal is a culinary ingredient made from ground dried corn, typically used for texture or as a base in food products. It is generally recognized as safe for consumption, though it should be avoided by individuals with corn allergies or celiac disease if cross-contamination is a concern."
+    },
+    {
+        "id": "chem_314",
+        "name": "Rice Meal",
+        "type": "safe",
+        "category": "Food - Grains/Filler",
+        "profile": "Rice meal is a ground form of rice typically used as a thickener, binder, or carbohydrate source in food products. It is generally considered safe for human consumption, though it lacks significant nutritional density compared to whole grain rice."
+    },
+    {
+        "id": "chem_315",
+        "name": "Chickpea flour",
+        "type": "safe",
+        "category": "Food - Ingredient",
+        "profile": "Gram meal, also known as besan or chickpea flour, is a ground legume product used as a food ingredient or thickening agent. It is generally recognized as safe for consumption, though it can trigger allergic reactions in individuals with legume sensitivities."
+    },
+    {
+        "id": "chem_316",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Preservative/Flavor Enhancer",
+        "profile": "Sodium chloride is a mineral used primarily as a flavor enhancer and preservative in food. While generally safe, excessive consumption is linked to health issues like hypertension and cardiovascular strain."
+    },
+    {
+        "id": "chem_317",
+        "name": "Piper nigrum (Black Pepper)",
+        "type": "safe",
+        "category": "Food - Spice/Flavoring Agent",
+        "profile": "Black pepper is a common culinary spice derived from dried peppercorns that is generally recognized as safe for consumption; it is primarily used for flavoring and possesses antioxidant properties."
+    },
+    {
+        "id": "chem_318",
+        "name": "Cheese Powder",
+        "type": "safe",
+        "category": "Food - Flavoring/Additive",
+        "profile": "A dehydrated form of cheese used to provide flavor and texture to snacks and prepared foods. It is generally recognized as safe (GRAS), though it typically contains high levels of sodium and potential allergens like milk."
+    },
+    {
+        "id": "chem_319",
+        "name": "Artificial and Nature-Identical Butter Flavoring",
+        "type": "safe",
+        "category": "Food - Flavoring Agent",
+        "profile": "These are chemical compounds, such as diacetyl or acetoin, used to replicate the taste and aroma of butter. While generally recognized as safe for consumption, some synthetic flavoring compounds can cause respiratory irritation if inhaled in concentrated industrial settings."
+    },
+    {
+        "id": "chem_320",
+        "name": "Chickpea flour",
+        "type": "safe",
+        "category": "Food - Thickener/Binder",
+        "profile": "Gram meal, also known as besan, is a flour made from ground chickpeas. It is widely considered safe and is used as a culinary ingredient, though it can pose an allergen risk for individuals with legume sensitivities."
+    },
+    {
+        "id": "chem_321",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Flavor Enhancer / Preservative",
+        "profile": "Sodium chloride is a naturally occurring mineral used to enhance flavor and extend shelf life by inhibiting microbial growth. While generally safe, excessive consumption can contribute to high blood pressure in sensitive individuals."
     }
 ]

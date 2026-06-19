@@ -48,3 +48,10 @@ yarn-error.log*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Testing & Scratch Files
+scratch/
+result.txt
+*.jpeg
+*.jpg
+*.png
