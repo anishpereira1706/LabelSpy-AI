@@ -39,10 +39,11 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 w-full sm:w-auto">
               <Link
                 to="/scanner"
-                className="w-full sm:w-auto px-8 py-4 bg-dark hover:bg-dark/90 text-primary rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-dark/15 hover:scale-[1.02]"
+                className="group relative overflow-hidden w-full sm:w-auto px-8 py-4 bg-dark hover:bg-dark/90 text-primary rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-dark/15 hover:scale-[1.02] hover:shadow-xl"
               >
-                Start Scanning
-                <ArrowRight className="w-4 h-4" />
+                <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-shimmer-sweep"></div>
+                <span className="relative z-10">Start Scanning</span>
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
                 href="#features"

@@ -58,3 +58,13 @@ body {
   background-size: 200% auto;
   animation: gradient-x 1.5s linear infinite;
 }
+
+/* Premium Button Sweep */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer-sweep {
+  animation: shimmer-sweep 2s infinite;
+}
