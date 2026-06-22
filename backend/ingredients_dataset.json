@@ -2245,5 +2245,180 @@
         "type": "safe",
         "category": "Food - Flavor Enhancer / Preservative",
         "profile": "Sodium chloride is a naturally occurring mineral used to enhance flavor and extend shelf life by inhibiting microbial growth. While generally safe, excessive consumption can contribute to high blood pressure in sensitive individuals."
+    },
+    {
+        "id": "chem_322",
+        "name": "Sucrose",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "A common carbohydrate used as a sweetener and preservative. While generally safe, excessive consumption is linked to metabolic health issues such as obesity and type 2 diabetes."
+    },
+    {
+        "id": "chem_323",
+        "name": "Ammonium Bicarbonate (503ii) and Sodium Bicarbonate (500ii)",
+        "type": "safe",
+        "category": "Food - Leavening Agent",
+        "profile": "These are common baking agents used to make dough rise by releasing carbon dioxide. They are generally recognized as safe for consumption when used in food products."
+    },
+    {
+        "id": "chem_324",
+        "name": "Protease (INS 1101ii)",
+        "type": "safe",
+        "category": "Food - Enzyme / Flour Treatment Agent",
+        "profile": "Protease is an enzyme used to hydrolyze proteins to improve dough texture and elasticity. It is generally recognized as safe (GRAS) for consumption as it is deactivated during the baking process."
+    },
+    {
+        "id": "chem_325",
+        "name": "Diacetyl tartaric acid esters of mono- and diglycerides (DATEM)",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "Used as an emulsifier to improve dough structure and texture in baked goods. It is generally recognized as safe (GRAS) by regulatory agencies when consumed in typical dietary amounts."
+    },
+    {
+        "id": "chem_326",
+        "name": "Honey",
+        "type": "safe",
+        "category": "Food - Humectant/Sweetener",
+        "profile": "Honey is a natural substance used as a sweetener or humectant in cosmetic formulations. It is generally safe for topical use, though it should not be ingested by infants under one year due to the risk of botulism."
+    },
+    {
+        "id": "chem_327",
+        "name": "Brown Rice Syrup",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "A plant-based liquid sweetener produced by enzymatically breaking down rice starch into sugars. It is generally considered safe but acts similarly to table sugar and can contribute to elevated blood glucose levels if consumed in excess."
+    },
+    {
+        "id": "chem_328",
+        "name": "Rice Syrup",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "A plant-based sweetener derived from fermented rice starch used to provide sweetness and texture. It is generally considered safe for consumption but has a high glycemic index, similar to refined sugars."
+    },
+    {
+        "id": "chem_329",
+        "name": "Sugar (Sucrose)",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "Evaporated cane juice is a sweetener derived from dehydrated sugar cane syrup that is chemically identical to table sugar. While safe for consumption, it should be consumed in moderation as excessive intake is linked to metabolic health issues."
+    },
+    {
+        "id": "chem_330",
+        "name": "Extra Virgin Olive Oil",
+        "type": "safe",
+        "category": "Food/Cosmetic - Emollient",
+        "profile": "A natural oil extracted from olives, used as a food ingredient or a cosmetic moisturizer. It is generally recognized as safe for topical and oral consumption, offering antioxidant properties and skin-conditioning benefits."
+    },
+    {
+        "id": "chem_331",
+        "name": "Refined Hazelnut Oil",
+        "type": "safe",
+        "category": "Cosmetic/Food - Emollient",
+        "profile": "A plant-derived oil used as a skin conditioning agent or food ingredient; it is generally safe but must be avoided by individuals with tree nut allergies."
+    },
+    {
+        "id": "chem_332",
+        "name": "Dehydrated Potatoes",
+        "type": "safe",
+        "category": "Food - Thickening Agent/Starch",
+        "profile": "Dehydrated potatoes are processed potatoes used as a shelf-stable starch source to provide texture and body to food products. They are generally recognized as safe for consumption, though individuals with specific starch sensitivities or dietary restrictions should note their carbohydrate content."
+    },
+    {
+        "id": "chem_333",
+        "name": "Sodium Caseinate",
+        "type": "safe",
+        "category": "Food - Emulsifier/Stabilizer",
+        "profile": "A protein derived from milk used to improve texture and shelf stability in processed foods. It is generally recognized as safe, but must be avoided by individuals with milk protein allergies."
+    },
+    {
+        "id": "chem_334",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Preservative/Flavor Enhancer",
+        "profile": "Sodium chloride is used primarily to enhance flavor and preserve food by inhibiting bacterial growth. While generally safe, excessive consumption can contribute to hypertension and cardiovascular issues in some individuals."
+    },
+    {
+        "id": "chem_335",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Preservative/Flavor Enhancer",
+        "profile": "Sodium chloride is a common mineral used as a flavor enhancer and preservative in food. While generally safe, excessive consumption can contribute to hypertension and cardiovascular issues in some individuals."
+    },
+    {
+        "id": "chem_336",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Flavor Enhancer/Preservative",
+        "profile": "Common table salt is used as a flavor enhancer and preservative. While generally safe, excessive consumption is linked to hypertension and cardiovascular health issues."
+    },
+    {
+        "id": "chem_337",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Preservative and Flavor Enhancer",
+        "profile": "Salt is a common mineral used as a flavoring agent and preservative to inhibit microbial growth. While generally safe, excessive consumption can contribute to hypertension and cardiovascular issues in sensitive individuals."
+    },
+    {
+        "id": "chem_338",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Preservative/Flavor Enhancer",
+        "profile": "Sodium chloride is used to enhance flavor and act as a natural preservative by inhibiting microbial growth. While generally safe in moderate amounts, excessive consumption can contribute to hypertension and cardiovascular issues."
+    },
+    {
+        "id": "chem_339",
+        "name": "Sodium Chloride",
+        "type": "safe",
+        "category": "Food - Flavor Enhancer/Preservative",
+        "profile": "Sodium chloride is a common mineral used as a flavor enhancer and preservative in food. While generally safe in moderate amounts, excessive consumption may contribute to hypertension and cardiovascular health issues."
+    },
+    {
+        "id": "chem_340",
+        "name": "Sodium Bicarbonate",
+        "type": "safe",
+        "category": "Food - Leavening agent / Cosmetic - pH adjuster",
+        "profile": "Sodium bicarbonate is a common chemical compound used as a leavening agent in baking or a buffering agent in personal care products. It is generally recognized as safe for consumption and topical use, though excessive ingestion can disrupt electrolyte balance."
+    },
+    {
+        "id": "chem_341",
+        "name": "Calcium peroxide",
+        "type": "safe",
+        "category": "Food - Flour Treatment Agent",
+        "profile": "Calcium peroxide is used as a dough conditioner and oxidizing agent to improve flour texture and baking quality. It is considered safe for consumption when used within established regulatory limits as it breaks down into calcium hydroxide and oxygen."
+    },
+    {
+        "id": "chem_342",
+        "name": "Diacetyl tartaric acid esters of mono- and diglycerides (DATEM)",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "DATEM is a vegetable-derived emulsifier used to strengthen dough and stabilize textures. It is generally recognized as safe (GRAS) by regulatory bodies like the FDA when consumed in standard food amounts."
+    },
+    {
+        "id": "chem_343",
+        "name": "Fructose",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "Levulose is another name for fructose, a naturally occurring monosaccharide found in fruits and honey used as a sweetening agent. It is generally recognized as safe for consumption, though excessive intake is linked to metabolic health issues."
+    },
+    {
+        "id": "chem_344",
+        "name": "Amylase",
+        "type": "safe",
+        "category": "Food - Flour Treatment Agent",
+        "profile": "Amylase is an enzyme used to break down starches into sugars to improve fermentation and texture in baked goods. It is generally recognized as safe (GRAS) for consumption and is naturally produced by the human body for digestion."
+    },
+    {
+        "id": "chem_345",
+        "name": "Diacetyl tartaric acid esters of mono- and diglycerides (DATEM)",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "DATEM is a common food additive used to improve dough stability and texture in baked goods. It is generally recognized as safe (GRAS) by regulatory agencies like the FDA and EFSA when consumed in standard dietary amounts."
+    },
+    {
+        "id": "chem_346",
+        "name": "Fructose",
+        "type": "safe",
+        "category": "Food - Sweetener",
+        "profile": "Levulose is a common synonym for fructose, a naturally occurring monosaccharide found in fruits and honey used as a sweetener. While generally safe, excessive consumption can contribute to metabolic issues like insulin resistance and fatty liver disease."
     }
 ]

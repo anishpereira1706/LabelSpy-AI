@@ -229,7 +229,7 @@
 
 
 import React, { useState, useEffect, useRef } from "react";
-import { ScanSearch, AlertTriangle, ShieldCheck, HelpCircle, AlertCircle, Upload, Camera, Sparkles } from "lucide-react";
+import { ScanSearch, AlertTriangle, ShieldCheck, HelpCircle, AlertCircle, Upload, Camera, Sparkles, ShieldAlert, EyeOff } from "lucide-react";
 import Tesseract from "tesseract.js"; // Integrated OCR Engine
 import ChatAssistant from "../components/ChatAssistant";
 import { API_BASE_URL } from "../config";
@@ -311,7 +311,7 @@ export default function Scanner() {
           const MAX_DIM = 1600;
           let width = img.width;
           let height = img.height;
-          
+
           if (width > MAX_DIM || height > MAX_DIM) {
             if (width > height) {
               height = Math.round((height * MAX_DIM) / width);
@@ -327,7 +327,7 @@ export default function Scanner() {
 
           // Apply high-contrast grayscale filter to binarize text and filter shadows
           ctx.filter = "grayscale(1) contrast(1.8) brightness(0.95)";
-          
+
           // Draw image with the filters active
           ctx.drawImage(img, 0, 0, width, height);
 
@@ -360,7 +360,7 @@ export default function Scanner() {
       if (scanMode === "ai") {
         setOcrProgress("Enhancing label contrast...");
         const enhancedImageDataUrl = await preprocessImage(file);
-        
+
         setOcrProgress("Uploading to Deep AI Engine...");
         const response = await fetch(`${API_BASE_URL}/extract-vision`, {
           method: "POST",
@@ -372,10 +372,10 @@ export default function Scanner() {
           const errData = await response.json().catch(() => ({}));
           throw new Error(errData.detail || "AI Extraction failed.");
         }
-        
+
         const data = await response.json();
         setIngredientText(data.extracted_text);
-        
+
         await new Promise(r => setTimeout(r, 1500));
         setOcrProgress("");
         setLoading(false);
@@ -406,7 +406,7 @@ export default function Scanner() {
             const parsedIngredients = cleanAndExtractIngredients(text);
 
             setIngredientText(parsedIngredients); // Pushes the cleaned data string right into your input box
-            
+
             setTimeout(() => {
               setOcrProgress("");
               setLoading(false);
@@ -466,8 +466,21 @@ export default function Scanner() {
     if (!res) return { score: 100, grade: "A", color: "text-green-500", stroke: "#22c55e", bg: "bg-green-500/10", label: "Excellent" };
     const dCount = res.dangerous_count || 0;
     const mCount = res.moderate_count || 0;
-    const score = Math.max(1, Math.min(100, 100 - (dCount * 20) - (mCount * 8)));
     
+    // Deduct points for alerts based on severity
+    let alertDeduction = 0;
+    if (res.alerts && res.alerts.length > 0) {
+      res.alerts.forEach((alert) => {
+        if (alert.severity === "high") {
+          alertDeduction += 15;
+        } else {
+          alertDeduction += 8;
+        }
+      });
+    }
+
+    const score = Math.max(1, Math.min(100, 100 - (dCount * 20) - (mCount * 8) - alertDeduction));
+
     if (score >= 90) return { score, grade: "A", color: "text-green-500", stroke: "#22c55e", bg: "bg-green-500/10", label: "Excellent" };
     if (score >= 75) return { score, grade: "B", color: "text-teal-500", stroke: "#14b8a6", bg: "bg-teal-500/10", label: "Good / Low Risk" };
     if (score >= 50) return { score, grade: "C", color: "text-amber-500", stroke: "#f59e0b", bg: "bg-amber-500/10", label: "Moderate Risk" };
@@ -486,7 +499,7 @@ export default function Scanner() {
 
       {/* SECTION 1: Inputs 2-Column Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mb-8">
-        
+
         {/* Left Column: File Uploader */}
         <div className="bg-gradient-to-br from-accent/5 via-primary to-primary border border-secondary rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-accent/30 transition-all duration-300">
           <div>
@@ -495,38 +508,35 @@ export default function Scanner() {
                 <span className="w-1.5 h-3 rounded-full bg-accent"></span>
                 Label Scanner
               </h3>
-              
+
               {/* Scan Mode Toggle */}
               <div className="bg-secondary/50 p-1 rounded-lg flex items-center gap-1 border border-secondary">
                 <button
                   type="button"
                   onClick={() => setScanMode("local")}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
-                    scanMode === "local" 
-                      ? "bg-white text-dark shadow-sm" 
+                  className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${scanMode === "local"
+                      ? "bg-white text-dark shadow-sm"
                       : "text-dark/50 hover:text-dark/80 hover:bg-white/50"
-                  }`}
+                    }`}
                 >
                   Default
                 </button>
                 <button
                   type="button"
                   onClick={() => setScanMode("ai")}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${
-                    scanMode === "ai" 
-                      ? "bg-accent text-primary shadow-sm" 
+                  className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${scanMode === "ai"
+                      ? "bg-accent text-primary shadow-sm"
                       : "text-dark/50 hover:text-dark/80 hover:bg-white/50"
-                  }`}
+                    }`}
                 >
                   Use AI
                 </button>
               </div>
             </div>
-            
+
             <div
-              className={`group relative flex flex-col items-center justify-center border-2 border-dashed border-accent/30 hover:border-accent rounded-xl p-8 bg-primary/40 hover:bg-accent/[0.03] transition-all text-center cursor-pointer overflow-hidden ${
-                loading ? "opacity-60 cursor-not-allowed" : ""
-              }`}
+              className={`group relative flex flex-col items-center justify-center border-2 border-dashed border-accent/30 hover:border-accent rounded-xl p-8 bg-primary/40 hover:bg-accent/[0.03] transition-all text-center cursor-pointer overflow-hidden ${loading ? "opacity-60 cursor-not-allowed" : ""
+                }`}
             >
               <input
                 id="label-camera-input"
@@ -545,7 +555,7 @@ export default function Scanner() {
               <p className="text-xs text-dark/50 px-4">
                 {ocrProgress ? ocrProgress : "Click to select or upload an ingredient label photo"}
               </p>
-              
+
               {/* Custom Laser Scan Animation */}
               {loading && ocrProgress && (
                 <>
@@ -590,11 +600,10 @@ export default function Scanner() {
             <button
               type="submit"
               disabled={loading || !ingredientText.trim()}
-              className={`w-full px-6 py-3.5 text-primary font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 mt-4 disabled:cursor-not-allowed ${
-                loading && !ocrProgress 
-                  ? 'bg-gradient-to-r from-accent via-purple-500 to-accent animate-gradient-x shadow-[0_0_20px_rgba(79,70,229,0.4)] scale-[0.98]' 
+              className={`w-full px-6 py-3.5 text-primary font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 mt-4 disabled:cursor-not-allowed ${loading && !ocrProgress
+                  ? 'bg-gradient-to-r from-accent via-purple-500 to-accent animate-gradient-x shadow-[0_0_20px_rgba(79,70,229,0.4)] scale-[0.98]'
                   : 'bg-accent hover:bg-accent/90 disabled:bg-secondary disabled:text-dark/40 hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5'
-              }`}
+                }`}
             >
               {loading && !ocrProgress ? (
                 <span className="flex items-center gap-2">
@@ -616,7 +625,7 @@ export default function Scanner() {
       {/* SECTION 2: Analytics Dashboard (Single Column) */}
       {result && (
         <div ref={reportRef} className="border-t border-secondary pt-8 mt-4 scroll-mt-20 space-y-6 animate-in fade-in duration-500">
-          
+
           {/* Score card & Circle progress */}
           <div className="bg-primary border border-secondary rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row items-center gap-6">
             {/* Circular Progress Gauge */}
@@ -723,74 +732,159 @@ export default function Scanner() {
             )}
           </div>
 
+          {/* Authenticity & Hidden Ingredient Alerts */}
+          {result.alerts && result.alerts.length > 0 && (
+            <div className="bg-slate-500/[0.02] border border-slate-200/80 rounded-2xl p-5 space-y-4">
+              <h3 className="text-xs font-black text-slate-800/80 flex items-center gap-2 tracking-wider uppercase">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </span>
+                Authenticity & Hidden Ingredient Warnings ({result.alerts.length})
+              </h3>
+              <div className="grid grid-cols-1 gap-3">
+                {result.alerts.map((alert, idx) => {
+                  const isHigh = alert.severity === "high";
+                  
+                  // Clean up labels and styles to remove redundant "hidden" wording
+                  const alertLabels = {
+                    adulteration: { text: "Product Dilution", style: "bg-rose-50 text-rose-700 border-rose-100" },
+                    hidden_sugar: { text: "Sugar Alias", style: "bg-amber-50 text-amber-700 border-amber-100" },
+                    hidden_msg: { text: "MSG & Glutamates", style: "bg-orange-50 text-orange-700 border-orange-100" },
+                    hidden_trans_fat: { text: "Trans Fats", style: "bg-red-50 text-red-700 border-red-100" }
+                  };
+                  
+                  const labelInfo = alertLabels[alert.type] || { 
+                    text: alert.type.replace("hidden_", "").replace("_", " "), 
+                    style: isHigh ? "bg-rose-50 text-rose-700 border-rose-100" : "bg-amber-50 text-amber-700 border-amber-100" 
+                  };
+
+                  return (
+                    <div
+                      key={idx}
+                      className={`border border-l-4 rounded-xl p-4 shadow-sm flex flex-col sm:flex-row items-start gap-4 transition-all duration-300 hover:-translate-y-0.5 ${
+                        isHigh
+                          ? "bg-rose-500/[0.01] border-slate-200 border-l-rose-500 hover:shadow-md hover:shadow-rose-500/5 hover:border-rose-200"
+                          : "bg-amber-500/[0.01] border-slate-200 border-l-amber-500 hover:shadow-md hover:shadow-amber-500/5 hover:border-amber-200"
+                      }`}
+                    >
+                      <div
+                        className={`p-2.5 rounded-xl shrink-0 ${
+                          isHigh ? "bg-rose-50 text-rose-600 border border-rose-100" : "bg-amber-50 text-amber-600 border border-amber-100"
+                        }`}
+                      >
+                        {isHigh ? (
+                          <ShieldAlert className="w-5 h-5" />
+                        ) : (
+                          <EyeOff className="w-5 h-5" />
+                        )}
+                      </div>
+                      <div className="space-y-1.5 flex-grow">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="font-extrabold text-sm text-slate-900">{alert.title}</h4>
+                        </div>
+                        {alert.ingredient && (
+                          <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-500">
+                            <span>Detected:</span>
+                            <span className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200 font-mono">
+                              {alert.ingredient}
+                            </span>
+                          </div>
+                        )}
+                        <p className="text-xs text-slate-600/90 leading-relaxed font-semibold">
+                          {alert.message}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Hazard Reports */}
           {(result.dangerous_count > 0 || result.moderate_count > 0) && (
-            <div className="space-y-4 pt-4 border-t border-secondary">
-              <h3 className="text-base font-bold text-dark mb-3">Detailed Warnings</h3>
-
-              {result.flagged_hazards.map((hazard, index) => {
-                const hasDifferentMatch = hazard.matched_as && hazard.matched_as.toLowerCase() !== hazard.ingredient.toLowerCase();
-                return (
-                  <div key={`toxic-${index}`} className="border border-red-100 rounded-xl bg-primary shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <div className="p-4 bg-red-50/50 border-b border-red-100/50 flex justify-between items-start">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <AlertTriangle className="w-4 h-4 text-red-500 shrink-0" />
-                          <h4 className="font-bold text-dark text-sm">
+            <div className="bg-slate-500/[0.02] border border-slate-200/80 rounded-2xl p-5 space-y-4">
+              <h3 className="text-xs font-black text-slate-800/80 flex items-center gap-2 tracking-wider uppercase">
+                <span className="w-1.5 h-3 rounded-full bg-rose-500"></span>
+                Detailed Chemical & Toxicity Profiles ({result.dangerous_count + result.moderate_count})
+              </h3>
+              
+              <div className="grid grid-cols-1 gap-3">
+                {result.flagged_hazards.map((hazard, index) => {
+                  const hasDifferentMatch = hazard.matched_as && hazard.matched_as.toLowerCase() !== hazard.ingredient.toLowerCase();
+                  return (
+                    <div
+                      key={`toxic-${index}`}
+                      className="border border-slate-200 border-l-4 border-l-red-500 bg-rose-500/[0.01] hover:shadow-md hover:border-red-200 hover:-translate-y-0.5 rounded-xl p-4 flex flex-col sm:flex-row items-start gap-4 transition-all duration-300"
+                    >
+                      <div className="p-2.5 rounded-xl bg-red-50 text-red-600 border border-red-100 shrink-0">
+                        <AlertTriangle className="w-5 h-5" />
+                      </div>
+                      <div className="space-y-1.5 flex-grow">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <h4 className="font-extrabold text-sm text-slate-900">
                             {hazard.matched_as || hazard.ingredient}
                             {hasDifferentMatch && (
-                              <span className="text-xs font-normal text-dark/40 ml-1.5">
+                              <span className="text-xs font-normal text-slate-400 ml-1.5">
                                 (scanned: {hazard.ingredient})
                               </span>
                             )}
                           </h4>
+                          <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-50 text-red-700 border border-red-100">
+                            High Risk
+                          </span>
                         </div>
-                        <span className="text-[10px] font-bold text-red-700 bg-red-100/80 border border-red-200/50 px-2 py-0.5 rounded">
-                          {hazard.category}
-                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          <span className="text-[9px] font-black uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md border border-slate-200">
+                            {hazard.category}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-600/90 leading-relaxed font-semibold">
+                          {hazard.profile}
+                        </p>
                       </div>
-                      <span className="text-[10px] font-extrabold text-red-600 uppercase tracking-wider bg-red-100/40 px-2 py-0.5 rounded">
-                        High Risk
-                      </span>
                     </div>
-                    <div className="p-4 text-xs text-dark/80 leading-relaxed">
-                      {hazard.profile}
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
 
-              {result.moderate_hazards.map((hazard, index) => {
-                const hasDifferentMatch = hazard.matched_as && hazard.matched_as.toLowerCase() !== hazard.ingredient.toLowerCase();
-                return (
-                  <div key={`mod-${index}`} className="border border-amber-100 rounded-xl bg-primary shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <div className="p-4 bg-amber-50/50 border-b border-amber-100/50 flex justify-between items-start">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <HelpCircle className="w-4 h-4 text-amber-500 shrink-0" />
-                          <h4 className="font-bold text-dark text-sm">
+                {result.moderate_hazards.map((hazard, index) => {
+                  const hasDifferentMatch = hazard.matched_as && hazard.matched_as.toLowerCase() !== hazard.ingredient.toLowerCase();
+                  return (
+                    <div
+                      key={`mod-${index}`}
+                      className="border border-slate-200 border-l-4 border-l-amber-500 bg-amber-500/[0.01] hover:shadow-md hover:border-amber-200 hover:-translate-y-0.5 rounded-xl p-4 flex flex-col sm:flex-row items-start gap-4 transition-all duration-300"
+                    >
+                      <div className="p-2.5 rounded-xl bg-amber-50 text-amber-600 border border-amber-100 shrink-0">
+                        <HelpCircle className="w-5 h-5" />
+                      </div>
+                      <div className="space-y-1.5 flex-grow">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <h4 className="font-extrabold text-sm text-slate-900">
                             {hazard.matched_as || hazard.ingredient}
                             {hasDifferentMatch && (
-                              <span className="text-xs font-normal text-dark/40 ml-1.5">
+                              <span className="text-xs font-normal text-slate-400 ml-1.5">
                                 (scanned: {hazard.ingredient})
                               </span>
                             )}
                           </h4>
+                          <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-100">
+                            Moderate
+                          </span>
                         </div>
-                        <span className="text-[10px] font-bold text-amber-700 bg-amber-100/80 border border-amber-200/50 px-2 py-0.5 rounded">
-                          {hazard.category}
-                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          <span className="text-[9px] font-black uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md border border-slate-200">
+                            {hazard.category}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-600/90 leading-relaxed font-semibold">
+                          {hazard.profile}
+                        </p>
                       </div>
-                      <span className="text-[10px] font-extrabold text-amber-600 uppercase tracking-wider bg-amber-100/40 px-2 py-0.5 rounded">
-                        Moderate
-                      </span>
                     </div>
-                    <div className="p-4 text-xs text-dark/80 leading-relaxed">
-                      {hazard.profile}
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>

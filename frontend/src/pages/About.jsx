@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, Server, Users, ArrowRight } from "lucide-react";
+import { Shield, Eye, Heart, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function About() {
@@ -8,62 +8,62 @@ export default function About() {
       
       {/* Header Section */}
       <div className="max-w-3xl text-center space-y-6 mb-16">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-dark">
-          Empowering Consumer <span className="text-accent drop-shadow-sm">Safety</span>
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-dark">
+          About <span className="text-accent drop-shadow-sm">LabelSpy</span>
         </h1>
-        <p className="text-lg md:text-xl text-dark/70 leading-relaxed">
-          LabelSpy is a cutting-edge SaaS intelligence platform. We leverage vector embeddings and advanced AI models to decode complex chemical compositions in everyday products, bringing transparency to your health.
+        <p className="text-base sm:text-lg text-dark/70 leading-relaxed">
+          LabelSpy was built to bring absolute transparency to the products you use and consume daily. We believe everyone has the right to know exactly what is in their food and cosmetics without needing a degree in chemistry.
         </p>
       </div>
 
       {/* Grid Features */}
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-        <div className="p-8 border border-secondary rounded-3xl bg-secondary/30 hover:bg-secondary/60 transition-colors shadow-sm flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-primary rounded-2xl border border-accent/50 flex items-center justify-center mb-6 shadow-sm">
-            <Shield className="w-8 h-8 text-accent" />
+      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <div className="p-6 border border-secondary rounded-2xl bg-white/60 backdrop-blur-sm shadow-sm flex flex-col items-center text-center space-y-3">
+          <div className="w-12 h-12 bg-rose-50 border border-rose-100 rounded-xl flex items-center justify-center text-rose-500 shadow-sm">
+            <Heart className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-dark text-xl mb-3">Uncompromising Safety</h3>
-          <p className="text-dark/70 leading-relaxed">
-            We hold ourselves to the highest standards. Our database flags hidden toxins and moderate additives with enterprise-grade accuracy.
+          <h3 className="font-bold text-dark text-base">Consumer Health</h3>
+          <p className="text-dark/65 text-xs leading-relaxed">
+            Many daily items contain controversial additives, trans fats, or heavy sugars hidden under complex scientific aliases. We make these instantly visible.
           </p>
         </div>
 
-        <div className="p-8 border border-secondary rounded-3xl bg-secondary/30 hover:bg-secondary/60 transition-colors shadow-sm flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-primary rounded-2xl border border-accent/50 flex items-center justify-center mb-6 shadow-sm">
-            <Server className="w-8 h-8 text-accent" />
+        <div className="p-6 border border-secondary rounded-2xl bg-white/60 backdrop-blur-sm shadow-sm flex flex-col items-center text-center space-y-3">
+          <div className="w-12 h-12 bg-amber-50 border border-amber-100 rounded-xl flex items-center justify-center text-amber-500 shadow-sm">
+            <Eye className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-dark text-xl mb-3">RAG Architecture</h3>
-          <p className="text-dark/70 leading-relaxed">
-            By utilizing Pinecone Vector search, LabelSpy queries massive data sets in milliseconds to deliver instant, reliable reports.
+          <h3 className="font-bold text-dark text-base">Instant Clarity</h3>
+          <p className="text-dark/65 text-xs leading-relaxed">
+            Simply paste an ingredient text or upload a label photo. Our scanner cross-references the ingredients to highlight toxic risk profiles and product dilution.
           </p>
         </div>
 
-        <div className="p-8 border border-secondary rounded-3xl bg-secondary/30 hover:bg-secondary/60 transition-colors shadow-sm flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-primary rounded-2xl border border-accent/50 flex items-center justify-center mb-6 shadow-sm">
-            <Users className="w-8 h-8 text-accent" />
+        <div className="p-6 border border-secondary rounded-2xl bg-white/60 backdrop-blur-sm shadow-sm flex flex-col items-center text-center space-y-3">
+          <div className="w-12 h-12 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center text-indigo-500 shadow-sm">
+            <Shield className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-dark text-xl mb-3">User-Centric Design</h3>
-          <p className="text-dark/70 leading-relaxed">
-            We've stripped away the noise. You get a clean, beautiful, and distraction-free experience focused on delivering intelligence fast.
+          <h3 className="font-bold text-dark text-base">Privacy Focused</h3>
+          <p className="text-dark/65 text-xs leading-relaxed">
+            No forced sign-ups, no user tracking, and no credits system. We provide completely free, public safety scanning tools.
           </p>
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="w-full max-w-4xl bg-dark text-primary rounded-3xl p-10 md:p-16 text-center shadow-2xl relative overflow-hidden">
-        {/* Decorative circle */}
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="w-full max-w-4xl bg-dark text-primary rounded-2xl p-8 md:p-12 text-center shadow-xl relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-accent/15 rounded-full blur-3xl pointer-events-none"></div>
         
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 relative z-10">Ready to start analyzing?</h2>
-        <p className="text-primary/80 mb-8 max-w-xl mx-auto relative z-10 text-lg">
-          Join thousands of users who trust LabelSpy for their ingredient research.
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 relative z-10">Ready to check your ingredients?</h2>
+        <p className="text-primary/75 mb-6 max-w-md mx-auto relative z-10 text-sm">
+          Run your first label analysis today and inspect what you eat and apply.
         </p>
         <Link
           to="/scanner"
-          className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-primary font-bold rounded-xl transition-transform hover:scale-105 shadow-lg shadow-accent/20 relative z-10"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-accent text-primary font-bold rounded-xl transition-transform hover:scale-105 shadow-md shadow-accent/20 relative z-10 cursor-pointer"
         >
-          Try the Scanner <ArrowRight className="w-5 h-5" />
+          Open Scanner <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
 

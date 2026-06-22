@@ -13,6 +13,10 @@ import difflib
 import google.generativeai as genai
 import base64
 import uuid
+from detector import detect_hidden_ingredients
+
+
+
 
 # 1.5 Helper functions for string similarity validation (prevents false positive vector matches)
 def clean_chemical_name(name: str) -> str:
@@ -129,6 +133,8 @@ if os.getenv("GEMINI_API_KEY"):
 
 app = FastAPI(title="LabelSpy AI Backend Engine")
 
+
+
 # Configure CORS so your React frontend can talk to this server securely
 app.add_middleware(
     CORSMiddleware,
@@ -161,10 +167,14 @@ class IngredientRequest(BaseModel):
 class VisionRequest(BaseModel):
     image_data: str
 
+
 # 3. Base Health-Check Route
 @app.get("/")
 def home():
     return {"status": "online", "message": "LabelSpy AI Engine is listening..."}
+
+
+
 
 # 3.5 Return entire database for frontend Knowledge Base
 @app.get("/ingredients")
@@ -217,6 +227,7 @@ RULES:
         return {"extracted_text": extracted_text}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 def smart_split_ingredients(text: str) -> List[str]:
     result = []
@@ -451,6 +462,9 @@ def analyze_ingredients(request: IngredientRequest):
                     # If AI research fails or errors out, fallback to unlisted
                     unlisted_ingredients.append(ingredient)
 
+        # Run the hidden ingredient and adulteration detection engine
+        alerts = detect_hidden_ingredients(request.text, cleaned_ingredients)
+
         # Return the structural breakdown payload back to React
         return {
             "scanned_count": len(cleaned_ingredients),
@@ -462,7 +476,8 @@ def analyze_ingredients(request: IngredientRequest):
             "flagged_hazards": flagged_hazards,
             "moderate_hazards": moderate_additives,
             "safe_items": verified_safe_items,
-            "not_found_items": unlisted_ingredients
+            "not_found_items": unlisted_ingredients,
+            "alerts": alerts
         }
 
     except Exception as e:
@@ -541,3 +556,6 @@ async def chat_assistant(payload: ChatRequest):
         return {"reply": reply}
     except Exception as e:
         return {"reply": f"Error communicating with AI brain: {str(e)}"}
+
+# Trigger database reload hook v2
+

@@ -52,6 +52,7 @@ Thumbs.db
 # Testing & Scratch Files
 scratch/
 result.txt
+about_project.txt
 *.jpeg
 *.jpg
 *.png

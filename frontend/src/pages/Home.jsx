@@ -1,133 +1,83 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Database, Activity, Sparkles } from "lucide-react";
+import { ArrowRight, Shield, Eye, AlertTriangle } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="bg-primary text-dark overflow-x-hidden">
-      
-      {/* 🎬 SECTION 1: HERO VIEWPORT */}
-      <section className="relative min-h-0 lg:min-h-[calc(100vh-4rem)] flex items-start justify-center px-4 pt-8 md:pt-16 pb-12 overflow-hidden border-b border-secondary">
-        
-        {/* 🌌 Ambient Glow Backdrop for Section 1 */}
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl pointer-events-none animate-pulse-glow"></div>
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-accent/10 rounded-full filter blur-3xl pointer-events-none"></div>
+    <div className="bg-primary text-dark overflow-x-hidden relative min-h-[calc(100vh-4rem)] flex flex-col justify-between">
+      {/* Modern dot grid overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none opacity-50 z-0"></div>
 
-        <div className="max-w-7xl w-full mx-auto relative z-10 flex flex-col items-center">
-          
-          {/* Banner Tag */}
-          <div className="inline-flex items-center gap-2 bg-secondary border border-accent/30 px-4 py-1.5 rounded-full text-xs font-semibold text-dark/80 mb-8 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent animate-spin" style={{ animationDuration: '4s' }} />
-            <span>Powered by LabelSpy Engine v2.0</span>
+      {/* 🎬 HERO SECTION */}
+      <section className="relative flex-grow flex items-center justify-center px-4 pt-20 pb-20 z-10">
+        {/* Ambient Glow Backdrop */}
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-3xl w-full mx-auto relative flex flex-col items-center text-center space-y-8">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-dark leading-[1.15]">
+            Know what you consume. <br />
+            <span className="bg-gradient-to-r from-accent via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              Scan ingredients instantly.
+            </span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-dark/70 leading-relaxed max-w-xl">
+            LabelSpy analyzes food and cosmetic ingredient lists to instantly identify toxic hazards, hidden additives, and potential product adulteration warnings.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+            <Link
+              to="/scanner"
+              className="group relative overflow-hidden w-full sm:w-auto px-8 py-4 bg-dark hover:bg-dark/95 text-primary rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-dark/10 hover:scale-[1.02] cursor-pointer"
+            >
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 animate-shimmer-sweep"></div>
+              <span className="relative z-10">Start Scanner</span>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <a
+              href="#how-it-works"
+              className="w-full sm:w-auto px-8 py-4 bg-secondary hover:bg-slate-200/80 text-dark border border-slate-200 rounded-xl font-medium transition-all flex items-center justify-center gap-2 hover:scale-[1.02] cursor-pointer"
+            >
+              How it works
+            </a>
           </div>
+        </div>
+      </section>
 
-          {/* Centered Hero Content */}
-          <div className="max-w-4xl text-center space-y-6 mt-8 mb-12 flex flex-col items-center">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-dark leading-tight">
-              Ingredient Safety <br />
-              <span className="text-accent bg-gradient-to-r from-accent to-dark bg-clip-text text-transparent">
-                Intelligence.
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-dark/70 max-w-2xl mx-auto leading-relaxed">
-              Analyze product labels instantly. Our enterprise-grade engine detects
-              potential hazards, controversial additives, and hidden toxins in everyday
-              foods and cosmetics using semantic RAG database search.
+      {/* 🛠️ CORE FEATURES SECTION */}
+      <section id="how-it-works" className="relative px-4 py-16 bg-secondary/20 border-t border-secondary/50 z-10">
+        <div className="max-w-5xl w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white/60 backdrop-blur-sm border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col items-center text-center space-y-3">
+            <div className="w-10 h-10 bg-rose-50 border border-rose-100 rounded-xl flex items-center justify-center text-rose-500">
+              <Shield className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-dark text-base">Hazard Detection</h3>
+            <p className="text-dark/60 text-xs leading-relaxed">
+              Flags harmful chemicals, preservatives, and questionable additives inside daily products.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 w-full sm:w-auto">
-              <Link
-                to="/scanner"
-                className="group relative overflow-hidden w-full sm:w-auto px-8 py-4 bg-dark hover:bg-dark/90 text-primary rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-dark/15 hover:scale-[1.02] hover:shadow-xl"
-              >
-                <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-shimmer-sweep"></div>
-                <span className="relative z-10">Start Scanning</span>
-                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href="#features"
-                className="w-full sm:w-auto px-8 py-4 bg-secondary hover:bg-accent/20 text-dark border border-accent/40 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
-              >
-                Explore Features
-              </a>
-            </div>
           </div>
 
+          <div className="bg-white/60 backdrop-blur-sm border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col items-center text-center space-y-3">
+            <div className="w-10 h-10 bg-amber-50 border border-amber-100 rounded-xl flex items-center justify-center text-amber-500">
+              <Eye className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-dark text-base">Hidden Additives</h3>
+            <p className="text-dark/60 text-xs leading-relaxed">
+              Unmasks trans fats, MSG, and sugars disguised behind complex or proprietary chemical names.
+            </p>
+          </div>
+
+          <div className="bg-white/60 backdrop-blur-sm border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col items-center text-center space-y-3">
+            <div className="w-10 h-10 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center text-indigo-500">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-dark text-base">Product Authenticity</h3>
+            <p className="text-dark/60 text-xs leading-relaxed">
+              Detects product dilution and fraud (like honey or olive oil cut with cheap oils or syrups).
+            </p>
+          </div>
         </div>
       </section>
-
-      {/* 🚀 SECTION 2: FEATURES & ANALYTICS VIEWPORT */}
-      <section id="features" className="relative min-h-0 lg:min-h-screen flex items-center justify-center px-4 py-16 bg-secondary/15 overflow-hidden">
-        
-        {/* Glow backdrop for Section 2 */}
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl pointer-events-none"></div>
-
-        <div className="max-w-7xl w-full mx-auto relative z-10 flex flex-col items-center space-y-16">
-          
-          <div className="text-center max-w-xl space-y-3">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-dark tracking-tight">Enterprise Infrastructure</h2>
-            <p className="text-sm text-dark/60">Built on modern vector search indexes and safety datasets for high-fidelity compliance reports.</p>
-          </div>
-
-          {/* Statistics Banner */}
-          <div className="w-full bg-primary border border-secondary rounded-2xl p-6 sm:p-8 shadow-sm grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-extrabold text-dark">15,000+</div>
-              <div className="text-xs text-dark/50 font-bold uppercase tracking-wider mt-1">Chemicals Indexed</div>
-            </div>
-            <div>
-              <div className="text-3xl font-extrabold text-accent">99.8%</div>
-              <div className="text-xs text-dark/50 font-bold uppercase tracking-wider mt-1">OCR Parser Accuracy</div>
-            </div>
-            <div>
-              <div className="text-3xl font-extrabold text-dark">Instant</div>
-              <div className="text-xs text-dark/50 font-bold uppercase tracking-wider mt-1">Vector Search</div>
-            </div>
-            <div>
-              <div className="text-3xl font-extrabold text-accent">24 / 7</div>
-              <div className="text-xs text-dark/50 font-bold uppercase tracking-wider mt-1">AI Safety Support</div>
-            </div>
-          </div>
-
-          {/* Feature Pillars Grid */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div className="p-8 border border-secondary/80 rounded-2xl bg-primary/70 hover:bg-secondary/40 hover:-translate-y-1 transition-all duration-300 shadow-sm">
-              <div className="w-12 h-12 bg-secondary rounded-xl border border-accent/40 flex items-center justify-center mb-5 shadow-sm">
-                <Shield className="w-5 h-5 text-dark" />
-              </div>
-              <h3 className="font-bold text-dark text-lg mb-2">Automated Hazard Detection</h3>
-              <p className="text-dark/70 text-sm leading-relaxed">
-                Instantly flags severe toxins, moderate additives, and unknown chemicals using our curated index.
-              </p>
-            </div>
-
-            <div className="p-8 border border-secondary/80 rounded-2xl bg-primary/70 hover:bg-secondary/40 hover:-translate-y-1 transition-all duration-300 shadow-sm">
-              <div className="w-12 h-12 bg-secondary rounded-xl border border-accent/40 flex items-center justify-center mb-5 shadow-sm">
-                <Database className="w-5 h-5 text-dark" />
-              </div>
-              <h3 className="font-bold text-dark text-lg mb-2">Vector Search Database</h3>
-              <p className="text-dark/70 text-sm leading-relaxed">
-                Powered by Pinecone RAG architecture to fetch accurate, up-to-date ingredient profiles.
-              </p>
-            </div>
-
-            <div className="p-8 border border-secondary/80 rounded-2xl bg-primary/70 hover:bg-secondary/40 hover:-translate-y-1 transition-all duration-300 shadow-sm">
-              <div className="w-12 h-12 bg-secondary rounded-xl border border-accent/40 flex items-center justify-center mb-5 shadow-sm">
-                <Activity className="w-5 h-5 text-dark" />
-              </div>
-              <h3 className="font-bold text-dark text-lg mb-2">AI Expert Assistant</h3>
-              <p className="text-dark/70 text-sm leading-relaxed">
-                Chat interactively with our specialized AI model to get deeper context on any scanned label.
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
     </div>
   );
 }
