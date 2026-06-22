@@ -26,9 +26,9 @@ Identify:
 1. Hidden sugars, hidden MSG (glutamates), or hidden trans fats under complex, technical, or proprietary names.
 2. Potential product adulteration/fraud (e.g. if the product is 'Extra Virgin Olive Oil' but lists 'Sunflower Oil' or 'Soybean Oil', or if it is 'Honey' but lists 'Rice Syrup' or 'Corn Syrup').
 
-CRITICAL EXCLUSIONS:
-- Do NOT flag natural whole spices, herbs, fruits, vegetables, or whole foods (e.g. Amchur powder, dried mango, tomato powder, garlic, onion, seaweed, natural lemon juice, unrefined oils, organic grains) that might contain natural trace amounts of glutamates, sugars, or fats.
-- Only flag ultra-processed extracts, chemical aliases, and refined industry substitutes (e.g. Yeast Extract, Hydrolyzed Vegetable Protein, Autolyzed Yeast, Maltodextrin, High Fructose Corn Syrup, Hydrogenated Oils, Vanaspati, Shortening) that are intentionally added as technical processing agents, flavor enhancers, or cheap fillers.
+STRICT RAG RULES & EXCLUSIONS (MANDATORY):
+- Under NO circumstances flag natural whole spices, spice powders, herbs, fruits, vegetables, natural juices, or natural juice concentrates (e.g., Amchur powder, Lal mirch powder, pepper, lemon juice, lemon juice concentrate, garlic, onion, tomato, mango, salt) as "hidden_sugar", "hidden_msg", or "hidden_trans_fat". These are standard culinary ingredients, not hidden chemical additives or flavor-enhancing extracts.
+- Only flag ultra-processed, refined food chemicals, industrial extracts, or technical processing agents (e.g., Yeast Extract, Hydrolyzed Vegetable Protein, Autolyzed Yeast, Maltodextrin, Dextrose, High Fructose Corn Syrup, Hydrogenated Oils, Vanaspati) that are used as hidden enhancers or cheap fillers.
 
 Format each warning alert as a JSON object with:
 - "type": "adulteration", "hidden_sugar", "hidden_msg", or "hidden_trans_fat"
@@ -53,7 +53,7 @@ Do NOT include markdown formatting or backticks. Just return raw JSON."""
         
         parsed_alerts = json.loads(raw_output)
         if isinstance(parsed_alerts, list):
-            # Strip out "hidden" from generated titles to remove redundancy
+            final_alerts = []
             for alert in parsed_alerts:
                 t = alert.get("title", "")
                 t_clean = re.sub(r'\bhidden\b\s*', '', t, flags=re.I).strip()
@@ -62,7 +62,8 @@ Do NOT include markdown formatting or backticks. Just return raw JSON."""
                     alert["title"] = t_clean[0].upper() + t_clean[1:]
                 else:
                     alert["title"] = "Warning"
-            return parsed_alerts
+                final_alerts.append(alert)
+            return final_alerts
     except Exception as e:
         print(f"AI Hidden Ingredient Detection failed: {e}")
     
