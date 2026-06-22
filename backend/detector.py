@@ -26,6 +26,10 @@ Identify:
 1. Hidden sugars, hidden MSG (glutamates), or hidden trans fats under complex, technical, or proprietary names.
 2. Potential product adulteration/fraud (e.g. if the product is 'Extra Virgin Olive Oil' but lists 'Sunflower Oil' or 'Soybean Oil', or if it is 'Honey' but lists 'Rice Syrup' or 'Corn Syrup').
 
+CRITICAL EXCLUSIONS:
+- Do NOT flag natural whole spices, herbs, fruits, vegetables, or whole foods (e.g. Amchur powder, dried mango, tomato powder, garlic, onion, seaweed, natural lemon juice, unrefined oils, organic grains) that might contain natural trace amounts of glutamates, sugars, or fats.
+- Only flag ultra-processed extracts, chemical aliases, and refined industry substitutes (e.g. Yeast Extract, Hydrolyzed Vegetable Protein, Autolyzed Yeast, Maltodextrin, High Fructose Corn Syrup, Hydrogenated Oils, Vanaspati, Shortening) that are intentionally added as technical processing agents, flavor enhancers, or cheap fillers.
+
 Format each warning alert as a JSON object with:
 - "type": "adulteration", "hidden_sugar", "hidden_msg", or "hidden_trans_fat"
 - "title": A short warning title. CRITICAL: Do NOT use the word 'Hidden' in your titles (e.g., use 'Sugar Alias', 'Glutamate Enhancers', 'Trans Fat Source' instead of 'Hidden Sweetener', 'Hidden MSG', 'Hidden Trans Fat').
