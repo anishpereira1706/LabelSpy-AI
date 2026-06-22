@@ -27,7 +27,18 @@ function App() {
         </main>
 
         <footer className="w-full py-8 text-center text-dark/50 text-xs font-medium border-t border-secondary mt-auto">
-          <p>© {new Date().getFullYear()} LabelSpy Analytics</p>
+          <p>
+            © {new Date().getFullYear()} LabelSpy Analytics. Created by{" "}
+            <a 
+              href="https://github.com/anishpereira1706" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-accent hover:text-accent/80 transition-colors font-bold"
+              title="Anish Pereira (Anish Larson Pereira)"
+            >
+              Anish Larson Pereira (Anish Pereira)
+            </a>
+          </p>
         </footer>
       </div>
     </Router>
