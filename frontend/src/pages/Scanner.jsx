@@ -501,7 +501,7 @@ export default function Scanner() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mb-8">
 
         {/* Left Column: File Uploader */}
-        <div className="bg-gradient-to-br from-accent/5 via-primary to-primary border border-secondary rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-accent/30 transition-all duration-300">
+        <div className="bg-gradient-to-br from-accent/5 via-primary to-primary border border-secondary rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-accent/40 hover:shadow-lg hover:shadow-accent/[0.02] transition-all duration-300">
           <div>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-extrabold text-dark flex items-center gap-2">
@@ -574,7 +574,7 @@ export default function Scanner() {
         </div>
 
         {/* Right Column: Form Input */}
-        <div className="bg-gradient-to-br from-primary via-primary to-accent/[0.02] border border-secondary rounded-2xl shadow-sm p-6 flex flex-col justify-between hover:border-accent/30 transition-all duration-300">
+        <div className="bg-gradient-to-br from-primary via-primary to-accent/[0.02] border border-secondary rounded-2xl shadow-sm p-6 flex flex-col justify-between hover:border-accent/40 hover:shadow-lg hover:shadow-accent/[0.02] transition-all duration-300">
           <form onSubmit={handleScan} className="space-y-4 flex-1 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex justify-between items-center">
@@ -627,9 +627,10 @@ export default function Scanner() {
         <div ref={reportRef} className="border-t border-secondary pt-8 mt-4 scroll-mt-20 space-y-6 animate-in fade-in duration-500">
 
           {/* Score card & Circle progress */}
-          <div className="bg-primary border border-secondary rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row items-center gap-6">
+          <div className="bg-gradient-to-br from-primary via-primary to-accent/[0.01] border border-accent/15 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row items-center gap-6">
             {/* Circular Progress Gauge */}
             <div className="relative w-32 h-32 flex items-center justify-center shrink-0">
+              <div className="absolute inset-0 bg-accent/5 rounded-full filter blur-md -z-10 animate-pulse-glow"></div>
               <svg className="w-full h-full transform -rotate-90">
                 {/* Background Track */}
                 <circle
@@ -702,7 +703,7 @@ export default function Scanner() {
           {/* Clean Grouped Badges */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {result.safe_count > 0 && (
-              <div className="border border-secondary rounded-xl p-4 bg-primary shadow-sm">
+              <div className="border border-accent/10 rounded-xl p-4 bg-primary shadow-sm">
                 <h4 className="text-xs font-bold text-dark mb-2.5 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Verified Safe ({result.safe_count})
                 </h4>
@@ -717,7 +718,7 @@ export default function Scanner() {
             )}
 
             {result.unlisted_count > 0 && (
-              <div className="border border-secondary rounded-xl p-4 bg-primary shadow-sm">
+              <div className="border border-accent/10 rounded-xl p-4 bg-primary shadow-sm">
                 <h4 className="text-xs font-bold text-dark mb-2.5 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-dark/30"></span> Untracked ({result.unlisted_count})
                 </h4>
@@ -734,8 +735,8 @@ export default function Scanner() {
 
           {/* Authenticity & Hidden Ingredient Alerts */}
           {result.alerts && result.alerts.length > 0 && (
-            <div className="bg-slate-500/[0.02] border border-slate-200/80 rounded-2xl p-5 space-y-4">
-              <h3 className="text-xs font-black text-slate-800/80 flex items-center gap-2 tracking-wider uppercase">
+            <div className="bg-accent/[0.01] border border-accent/15 rounded-2xl p-5 space-y-4">
+              <h3 className="text-xs font-black text-indigo-950/90 flex items-center gap-2 tracking-wider uppercase">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
@@ -804,8 +805,8 @@ export default function Scanner() {
 
           {/* Hazard Reports */}
           {(result.dangerous_count > 0 || result.moderate_count > 0) && (
-            <div className="bg-slate-500/[0.02] border border-slate-200/80 rounded-2xl p-5 space-y-4">
-              <h3 className="text-xs font-black text-slate-800/80 flex items-center gap-2 tracking-wider uppercase">
+            <div className="bg-accent/[0.01] border border-accent/15 rounded-2xl p-5 space-y-4">
+              <h3 className="text-xs font-black text-indigo-950/90 flex items-center gap-2 tracking-wider uppercase">
                 <span className="w-1.5 h-3 rounded-full bg-rose-500"></span>
                 Detailed Chemical & Toxicity Profiles ({result.dangerous_count + result.moderate_count})
               </h3>

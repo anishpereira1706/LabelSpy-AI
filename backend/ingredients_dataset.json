@@ -2420,5 +2420,19 @@
         "type": "safe",
         "category": "Food - Sweetener",
         "profile": "Levulose is a common synonym for fructose, a naturally occurring monosaccharide found in fruits and honey used as a sweetener. While generally safe, excessive consumption can contribute to metabolic issues like insulin resistance and fatty liver disease."
+    },
+    {
+        "id": "chem_347",
+        "name": "Protease (specifically Bacterial Protease)",
+        "type": "safe",
+        "category": "Food - Enzyme/Flour Treatment Agent",
+        "profile": "Protease is an enzyme used to hydrolyze proteins to improve dough elasticity and texture. It is recognized as safe for consumption by major food safety authorities and is deactivated during the baking process."
+    },
+    {
+        "id": "chem_348",
+        "name": "Diacetyl tartaric acid esters of mono- and diglycerides (DATEM)",
+        "type": "safe",
+        "category": "Food - Emulsifier",
+        "profile": "An additive commonly used in baking to strengthen dough and improve texture. It is recognized as safe for consumption by major food safety authorities when used within established limits."
     }
 ]

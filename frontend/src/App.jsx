@@ -34,9 +34,9 @@ function App() {
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-accent hover:text-accent/80 transition-colors font-bold"
-              title="Anish Pereira (Anish Larson Pereira)"
+              title="Anish Larson Pereira"
             >
-              Anish Larson Pereira (Anish Pereira)
+              Anish Larson Pereira
             </a>
           </p>
         </footer>
