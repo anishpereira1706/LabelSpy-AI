@@ -6,7 +6,7 @@ from pinecone import Pinecone
 from huggingface_hub import InferenceClient
 from openai import OpenAI  # Added for unified HF model routing
 from dotenv import load_dotenv
-from typing import List, Dict
+from typing import List, Dict, Optional
 import json
 import re
 import difflib
@@ -488,7 +488,7 @@ class ChatRequest(BaseModel):
     message: str
     history: List[Dict[str, str]] = []  # To keep track of conversation history
     scanned_ingredients: List[str] = [] # Fallback
-    analysis_results: Dict = None        # Rich structured scan results
+    analysis_results: Optional[Dict] = None        # Rich structured scan results
 
 # 6. Add the /chat route
 @app.post("/chat")
